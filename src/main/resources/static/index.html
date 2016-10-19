@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shardis Project</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Shardis Project</h1>
+<hr>
+<h2 id="text"></h2>
+<h2 id="date"></h2>
+<script>
+    $(function () {
+        console.log('Ready.');
+        $.getJSON('/api/test', function (data) {
+            console.log('received data', data);
+            $('#text').html(data.text);
+            $('#date').html('Today is ' + data.date.substring(0, 10));
+        });
+    });
+</script>
+</body>
+</html>
