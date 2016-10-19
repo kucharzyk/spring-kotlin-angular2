@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner
 @SpringBootTest
 class GreatingsControllerTest {
 
-    @Autowired lateinit var greatingsController: GreatingsController
+    @Autowired private lateinit var greatingsController: GreatingsController
 
     @Test
     fun controllerIsAutowired() {
@@ -28,4 +28,8 @@ class GreatingsControllerTest {
         assertEquals("Hello Kotlin!", testObject.text)
     }
 
+    @Test
+    fun fibonnacciWorks() {
+        assertEquals("Fibonacci function should works", 233, greatingsController.fibonacci(13))
+    }
 }

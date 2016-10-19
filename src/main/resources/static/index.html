@@ -12,7 +12,19 @@
 <hr>
 <h2 id="text"></h2>
 <h2 id="date"></h2>
+<ul id="fib"></ul>
 <script>
+
+    var fetchFibonacci = function (x) {
+        $.get('/api/fib/' + x, function (data) {
+            console.log('received data', data);
+            $('#fib').append('<li>fib(' + x + ')=' + data + '</li>');
+            if (x < 20) {
+                fetchFibonacci(x + 1);
+            }
+        });
+    };
+
     $(function () {
         console.log('Ready.');
         $.getJSON('/api/test', function (data) {
@@ -20,6 +32,9 @@
             $('#text').html(data.text);
             $('#date').html('Today is ' + data.date.substring(0, 10));
         });
+
+        fetchFibonacci(0);
+
     });
 </script>
 </body>
