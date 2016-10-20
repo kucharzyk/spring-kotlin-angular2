@@ -1,5 +1,6 @@
 package com.shardis.controllers.rest
 
+import com.shardis.ShardisProperties
 import com.shardis.dto.SimpleDto
 import com.shardis.services.FibonacciService
 import org.springframework.web.bind.annotation.PathVariable
@@ -12,11 +13,14 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController()
 @RequestMapping(path = arrayOf("/api/"))
-class GreatingsController(private val fibonacciService: FibonacciService) {
+class GreatingsController(
+    private val fibonacciService: FibonacciService,
+    private val shardisProperties: ShardisProperties
+) {
 
     @RequestMapping(path = arrayOf("/test"), method = arrayOf(RequestMethod.GET))
     fun test(): SimpleDto {
-        return SimpleDto("Hello Kotlin!")
+        return SimpleDto("Hello Kotlin!", shardisProperties.version)
     }
 
     @RequestMapping(path = arrayOf("/fib/{x}"), method = arrayOf(RequestMethod.GET))

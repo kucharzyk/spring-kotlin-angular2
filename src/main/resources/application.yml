@@ -1,4 +1,20 @@
+server:
+    port: ${port:8080}
+    context-path: /
+    error.whitelabel.enabled: false
+    compression:
+      enabled: true
+      min-response-size: 1024
+      mime-types: text/html, text/xml, text/plain, text/css, application/javascript, application/json
 spring:
+  application:
+    name: shardis
+    admin:
+      enabled:
+  profiles:
+    active: prod
+  aop:
+    proxy-target-class: true
   jackson:
     serialization:
       write-dates-as-timestamps: false
@@ -9,3 +25,12 @@ management:
         user:
           name: admin
           password: xxxxxx
+      type: simple
+    ssh:
+      enabled: true
+      port: 2000
+security:
+  basic:
+    enabled: false
+shardis:
+  version: @project.version@
