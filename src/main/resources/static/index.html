@@ -8,7 +8,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>Shardis Project</h1>
+<h1>Shardis Project <span id="version"></span></h1>
 <hr>
 <h2 id="text"></h2>
 <h2 id="date"></h2>
@@ -30,6 +30,7 @@
         $.getJSON('/api/test', function (data) {
             console.log('received data', data);
             $('#text').html(data.text);
+          $('#version').html(data.version);
             $('#date').html('Today is ' + data.date.substring(0, 10));
         });
 
