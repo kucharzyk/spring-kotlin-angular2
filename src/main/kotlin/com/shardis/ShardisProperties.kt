@@ -10,5 +10,12 @@ import org.springframework.stereotype.Component
 @Component
 @ConfigurationProperties(prefix = "shardis")
 open class ShardisProperties {
+
     var version = "unknown"
+    var security = Security()
+
+    open class Security {
+        var header = "Authorization"
+        var secret: String? = null
+    }
 }
