@@ -1,6 +1,6 @@
-package com.shardis.security.jwt
+package com.shardis.auth.jwt
 
-import com.shardis.security.jwt.token.JwtTokenValidator
+import com.shardis.auth.jwt.JwtTokenService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider
 import org.springframework.security.core.userdetails.UserDetails
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
  * Created by Tomasz Kucharzyk
  */
 @Component
-open class JwtAuthenticationProvider(private val jwtTokenValidator: JwtTokenValidator) : AbstractUserDetailsAuthenticationProvider() {
+open class JwtAuthenticationProvider(private val jwtTokenService: JwtTokenService) : AbstractUserDetailsAuthenticationProvider() {
 
     override fun supports(authentication: Class<*>): Boolean = JwtAuthenticationToken::class.java.isAssignableFrom(authentication)
 
@@ -20,6 +20,6 @@ open class JwtAuthenticationProvider(private val jwtTokenValidator: JwtTokenVali
     override fun retrieveUser(username: String, authentication: UsernamePasswordAuthenticationToken): UserDetails {
         val jwtAuthenticationToken = authentication as JwtAuthenticationToken
         val token = jwtAuthenticationToken.token
-        return jwtTokenValidator.parseToken(token)
+        return jwtTokenService.parseToken(token)
     }
 }

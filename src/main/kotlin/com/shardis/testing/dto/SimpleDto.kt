@@ -1,4 +1,4 @@
-package com.shardis.dto
+package com.shardis.testing.dto
 
 import java.util.*
 

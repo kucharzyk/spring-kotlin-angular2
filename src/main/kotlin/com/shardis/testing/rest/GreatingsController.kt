@@ -1,8 +1,8 @@
-package com.shardis.controllers.rest
+package com.shardis.testing.rest
 
 import com.shardis.ShardisProperties
-import com.shardis.dto.SimpleDto
-import com.shardis.services.FibonacciService
+import com.shardis.testing.dto.SimpleDto
+import com.shardis.testing.services.FibonacciService
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod

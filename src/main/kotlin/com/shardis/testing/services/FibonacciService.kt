@@ -1,4 +1,4 @@
-package com.shardis.services
+package com.shardis.testing.services
 
 import org.springframework.stereotype.Service
 

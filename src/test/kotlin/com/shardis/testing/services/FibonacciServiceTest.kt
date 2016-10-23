@@ -1,4 +1,4 @@
-package com.shardis.services
+package com.shardis.testing.services
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

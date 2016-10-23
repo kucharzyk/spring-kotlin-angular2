@@ -1,4 +1,4 @@
-package com.shardis.security
+package com.shardis.auth
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

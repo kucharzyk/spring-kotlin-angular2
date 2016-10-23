@@ -1,10 +1,10 @@
-package com.shardis.security
+package com.shardis.auth
 
 import com.shardis.ShardisProperties
-import com.shardis.security.jwt.JwtAuthenticationEntryPoint
-import com.shardis.security.jwt.JwtAuthenticationProvider
-import com.shardis.security.jwt.JwtAuthenticationSuccessHandler
-import com.shardis.security.jwt.JwtAuthenticationTokenFilter
+import com.shardis.auth.jwt.JwtAuthenticationEntryPoint
+import com.shardis.auth.jwt.JwtAuthenticationProvider
+import com.shardis.auth.jwt.JwtAuthenticationSuccessHandler
+import com.shardis.auth.jwt.JwtAuthenticationTokenFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager

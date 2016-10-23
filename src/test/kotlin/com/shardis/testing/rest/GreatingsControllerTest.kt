@@ -1,4 +1,4 @@
-package com.shardis.controllers.rest
+package com.shardis.testing.rest
 
 import org.junit.Assert.*
 import org.junit.Test

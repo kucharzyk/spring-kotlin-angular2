@@ -1,4 +1,4 @@
-package com.shardis.security.jwt
+package com.shardis.auth.jwt
 
 import com.shardis.ShardisProperties
 import org.springframework.security.authentication.AnonymousAuthenticationToken
@@ -16,7 +16,7 @@ class JwtAuthenticationTokenFilter(val shardisProperties: ShardisProperties) : A
 
     override fun attemptAuthentication(request: HttpServletRequest, response: HttpServletResponse): Authentication? {
         val header: String? = request.getHeader(shardisProperties.security.header)
-        if (header == null || header.startsWith("Bearer ")) {
+        if (header == null || !header.startsWith("Bearer ")) {
             return AnonymousAuthenticationToken("anonymous", "anonymous", listOf(SimpleGrantedAuthority("ROLE_ANONYMOUS")))
         }
         val authToken = header.substring(7)
