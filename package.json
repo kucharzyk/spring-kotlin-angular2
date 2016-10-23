@@ -1,0 +1,19 @@
+{
+  "name": "shardis",
+  "version": "0.0.0",
+  "description": "[![Build Status](https://travis-ci.org/shardis/shardis.svg?branch=master)](https://travis-ci.org/shardis/shardis)",
+  "scripts": {
+    "build": "echo \"Building\" ",
+    "test": "echo \"Testing\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shardis/shardis.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/shardis/shardis/issues"
+  },
+  "homepage": "https://github.com/shardis/shardis#readme"
+}
