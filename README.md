@@ -8,6 +8,9 @@
 
 ## Technologies
 * Kotlin
+* Gradle
 * Spring Boot
+* Spring Security
+* JWT
 
 ## Changelog

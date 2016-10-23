@@ -1,8 +1,6 @@
 package com.shardis.auth
 
 import com.shardis.auth.jwt.JwtTokenService
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
@@ -22,12 +20,7 @@ class AuthController(val jwtTokenService: JwtTokenService) {
 
     @RequestMapping(path = arrayOf("/principal"), method = arrayOf(RequestMethod.GET))
     fun principal(): String {
-        val principal: Any = SecurityContextHolder.getContext().authentication.principal
-        if (principal is UserDetails) {
-            return principal.username ?: "unknown"
-        } else {
-            return principal.toString()
-        }
+        return SecurityUtils.getLoggedUserName()
     }
 
 }

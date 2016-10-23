@@ -52,7 +52,7 @@ open class WebSecurityConfig(
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers("/api/test").permitAll()
+            .antMatchers("/api/test").anonymous()
             .antMatchers("/api/protected/**").hasRole("USER")
             .antMatchers("/api/**").authenticated()
             .anyRequest().permitAll()
