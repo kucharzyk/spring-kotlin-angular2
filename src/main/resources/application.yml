@@ -1,5 +1,5 @@
 shardis:
-  version: @project.version@
+  version: ${version}
   security:
     header: Authorization
     secret: secret

@@ -26,6 +26,7 @@ class GreatingsControllerTest {
         val testObject = greatingsController.test()
         assertEquals("Hello Kotlin!", testObject.text)
         assertNotEquals("unknown", testObject.version)
+        assertTrue(testObject.version.startsWith("0."))
     }
 
     @Test
