@@ -1,4 +1,4 @@
-package com.shardis.auth
+package com.shardis.auth.support
 
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails

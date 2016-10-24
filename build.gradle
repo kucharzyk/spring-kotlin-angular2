@@ -63,10 +63,12 @@ dependencies {
   compile("org.springframework.boot:spring-boot-starter-validation")
   compile("org.springframework.boot:spring-boot-starter-web")
   compile("org.springframework.boot:spring-boot-starter-websocket")
-  compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
-  compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
   compile "org.springframework.boot:spring-boot-configuration-processor"
   kapt "org.springframework.boot:spring-boot-configuration-processor"
+  compile "org.hibernate:hibernate-envers"
+  compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+  compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+  compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
   runtime("com.h2database:h2")
   runtime("mysql:mysql-connector-java")
   runtime("org.postgresql:postgresql")
