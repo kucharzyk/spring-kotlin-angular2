@@ -1,4 +1,4 @@
-package com.shardis.support
+package com.shardis.jpa
 
 import org.hibernate.envers.Audited
 import org.springframework.data.annotation.CreatedBy

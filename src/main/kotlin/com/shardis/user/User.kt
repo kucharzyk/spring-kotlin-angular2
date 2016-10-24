@@ -1,6 +1,6 @@
 package com.shardis.user
 
-import com.shardis.support.AuditedEntity
+import com.shardis.jpa.AuditedEntity
 import javax.persistence.Entity
 import javax.persistence.Table
 

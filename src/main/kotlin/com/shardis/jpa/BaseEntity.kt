@@ -1,4 +1,4 @@
-package com.shardis.support
+package com.shardis.jpa
 
 import java.util.*
 import javax.persistence.GeneratedValue
