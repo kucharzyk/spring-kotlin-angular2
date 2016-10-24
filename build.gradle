@@ -78,7 +78,7 @@ dependencies {
 }
 
 task npmBuild(type: NpmTask) {
-  args = ["run", "build"]
+  args = ["run", "build:prod"]
 }
 
 task npmTest(type: NpmTask) {
