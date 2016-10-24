@@ -1,13 +1,16 @@
-sudo: required
+sudo: false
 language: java
 node_js:
   - "6"
 jdk:
   - oraclejdk8
+install:
+- if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
-    # required by node-gyp to build some packages
     packages:
+    - gcc-4.8
     - g++-4.8
+    - clang
