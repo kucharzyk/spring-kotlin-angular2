@@ -1,6 +1,13 @@
 sudo: required
-
 language: java
-
+node_js:
+  - "6"
 jdk:
   - oraclejdk8
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    # required by node-gyp to build some packages
+    packages:
+    - g++-4.8
