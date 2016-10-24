@@ -29,7 +29,7 @@ describe('shardis-ui App', function() {
 
   it('should have footer', () => {
     let subject = page.getFooter().getText();
-    let result = 'Spring Boot Angular 2 Webpack Starter';
+    let result = 'Shardis';
     expect(subject).toEqual(result);
   });
 

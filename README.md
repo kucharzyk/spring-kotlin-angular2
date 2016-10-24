@@ -4,6 +4,8 @@
 
 ## Project description
 
+Project is at early alpha stage - Don't use it now - It's a mess
+
 ## Features
 
 ## Technologies
@@ -12,5 +14,10 @@
 * Spring Boot
 * Spring Security
 * JWT
+* Typescript
+* Angular 2
+* Angular Material
+* Angular-Cli
+* SCSS
 
 ## Changelog

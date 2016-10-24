@@ -82,7 +82,11 @@ task npmBuild(type: NpmTask) {
 }
 
 task npmTest(type: NpmTask) {
-  args = ["run", "test"]
+  args = ["run", "test:phantom"]
+}
+
+task npmServer(type: NpmTask) {
+  args = ["run", "server:dev"]
 }
 
 npmInstall.dependsOn npmSetup
