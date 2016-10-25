@@ -1,4 +1,4 @@
-package com.shardis.auth
+package com.shardis.config
 
 import com.shardis.ShardisProperties
 import com.shardis.auth.jwt.JwtAuthenticationEntryPoint

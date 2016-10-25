@@ -13,7 +13,7 @@ import javax.persistence.MappedSuperclass
 open class BaseEntity() {
 
     @Id
-    @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
+    @GeneratedValue(strategy = javax.persistence.GenerationType.SEQUENCE, generator = "sequenceIdGenerator")
     var id: Long? = null
 
     val uuid: String = UUID.randomUUID().toString()

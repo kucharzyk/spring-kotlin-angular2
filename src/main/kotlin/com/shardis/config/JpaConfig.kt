@@ -1,4 +1,4 @@
-package com.shardis.jpa
+package com.shardis.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

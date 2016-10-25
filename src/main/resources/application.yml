@@ -27,6 +27,10 @@ spring:
   jackson:
     serialization:
       write-dates-as-timestamps: false
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: true
+      ddl-auto: create-drop
 management:
   shell:
     auth:

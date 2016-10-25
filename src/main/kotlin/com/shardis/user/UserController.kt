@@ -17,7 +17,7 @@ class UserController(val userService: UserService) {
 
     @RequestMapping(path = arrayOf("/add"), method = arrayOf(RequestMethod.GET))
     fun addRandomUser(): User {
-        val user = User("Simple User", "ROLE_USER")
+        val user = User("Simple User")
         userService.save(user)
         return user
     }

@@ -14,7 +14,7 @@ import javax.persistence.MappedSuperclass
 /**
  * Created by Tomasz Kucharzyk
  */
-class SchemaExporter(val hibernateDialect: String, entityPackage: String) {
+class SchemaExporter(hibernateDialect: String, entityPackage: String) {
 
 
     val metadataSources: MetadataSources
