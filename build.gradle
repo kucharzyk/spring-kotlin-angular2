@@ -4,6 +4,7 @@ buildscript {
     springBootVersion = "1.4.1.RELEASE"
     jjwtVersion = "0.7.0"
     gradleNodePluginVersion = "0.13"
+    reflectionsVersion = "0.9.10"
   }
   repositories {
     mavenCentral()
@@ -69,8 +70,8 @@ dependencies {
   compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
   compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
   compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
+  compile("org.reflections:reflections:${reflectionsVersion}")
   runtime("com.h2database:h2")
-  runtime("mysql:mysql-connector-java")
   runtime("org.postgresql:postgresql")
   testCompile("org.springframework.boot:spring-boot-starter-test")
   testCompile("org.springframework.security:spring-security-test")
@@ -99,4 +100,7 @@ processResources.dependsOn npmBuild
 test.dependsOn npmTest
 
 clean.delete << file("node_modules")
+sourceSets {
+  main.java.srcDirs += 'src/main/kotlin'
+}
 
