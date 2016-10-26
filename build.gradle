@@ -66,6 +66,7 @@ dependencies {
   compile("org.springframework.boot:spring-boot-starter-websocket")
   compile "org.springframework.boot:spring-boot-configuration-processor"
   kapt "org.springframework.boot:spring-boot-configuration-processor"
+  compile "org.hibernate:hibernate-java8"
   compile "org.hibernate:hibernate-envers"
   compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
   compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
