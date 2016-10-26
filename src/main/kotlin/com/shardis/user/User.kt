@@ -12,7 +12,7 @@ import javax.persistence.SequenceGenerator
  * Created by Tomasz Kucharzyk
  */
 @Entity
-@SequenceGenerator(allocationSize = 1, name = "sequenceIdGenerator", sequenceName = "Sequence_User")
+@SequenceGenerator(allocationSize = 1, name = "sequenceIdGenerator", sequenceName = "sequence_user")
 class User() : AuditedEntity() {
 
     constructor(username: String) : this() {

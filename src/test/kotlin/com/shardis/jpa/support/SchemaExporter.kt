@@ -14,7 +14,7 @@ import javax.persistence.MappedSuperclass
 /**
  * Created by Tomasz Kucharzyk
  */
-class SchemaExporter(hibernateDialect: String, entityPackage: String) {
+class SchemaExporter(hibernateDialect: String, entityPackage: String, implicitNamingStrategy: String, physicalNamingStrategy: String) {
 
 
     val metadataSources: MetadataSources
@@ -23,6 +23,8 @@ class SchemaExporter(hibernateDialect: String, entityPackage: String) {
         metadataSources = MetadataSources(
             StandardServiceRegistryBuilder()
                 .applySetting(AvailableSettings.DIALECT, hibernateDialect)
+                .applySetting(AvailableSettings.IMPLICIT_NAMING_STRATEGY, implicitNamingStrategy)
+                .applySetting(AvailableSettings.PHYSICAL_NAMING_STRATEGY, physicalNamingStrategy)
                 .build()
         )
 

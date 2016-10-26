@@ -8,7 +8,7 @@ import javax.persistence.SequenceGenerator
  * Created by Tomasz Kucharzyk
  */
 @Entity
-@SequenceGenerator(allocationSize = 1, name = "sequenceIdGenerator", sequenceName = "Sequence_Role")
+@SequenceGenerator(allocationSize = 1, name = "sequenceIdGenerator", sequenceName = "sequence_role")
 class Role() : AuditedEntity() {
 
     var name: String = ""

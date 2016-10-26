@@ -8,7 +8,7 @@ import javax.persistence.*
  * Created by Tomasz Kucharzyk
  */
 @Entity
-@SequenceGenerator(allocationSize = 1, name = "sequenceIdGenerator", sequenceName = "Sequence_Group")
+@SequenceGenerator(allocationSize = 1, name = "sequenceIdGenerator", sequenceName = "sequence_user_group")
 class UserGroup() : AuditedEntity() {
 
     var name: String = ""

@@ -1,128 +1,128 @@
 
-    alter table User_Role 
-        drop constraint FK7qnwwe579g9frolyprat52l4d;
+    alter table user_roles 
+        drop constraint FKj9553ass9uctjrmh0gkqsmv0d;
 
-    alter table User_Role 
-        drop constraint FKc52d1rv3ijbpu6lo2v3rej1tx;
+    alter table user_roles 
+        drop constraint FK55itppkw3i07do3h7qoclqd4k;
 
-    alter table User_UserGroup 
-        drop constraint FKjm0hncrkstjukhunsw3joyatc;
+    alter table user_user_groups 
+        drop constraint FKcyk8vtwqqmtm3xv1onm1r81ke;
 
-    alter table User_UserGroup 
-        drop constraint FKoemvh3b2apfvls9vsu63gp6kk;
+    alter table user_user_groups 
+        drop constraint FKddywflvu1fntus1ch9v9opcew;
 
-    alter table UserGroup_Role 
-        drop constraint FKfhbft3d9vbm9mqq2gxthimkw1;
+    alter table user_group_roles 
+        drop constraint FK99vs3uto0r291mfbq6028xib1;
 
-    alter table UserGroup_Role 
-        drop constraint FK39n818mnc83gkgct72fhtkp37;
+    alter table user_group_roles 
+        drop constraint FKhf7dawmx36sxv21p86y3q3ym;
 
-    drop table if exists Role cascade;
+    drop table if exists role cascade;
 
-    drop table if exists User cascade;
+    drop table if exists user cascade;
 
-    drop table if exists User_Role cascade;
+    drop table if exists user_roles cascade;
 
-    drop table if exists User_UserGroup cascade;
+    drop table if exists user_user_groups cascade;
 
-    drop table if exists UserGroup cascade;
+    drop table if exists user_group cascade;
 
-    drop table if exists UserGroup_Role cascade;
+    drop table if exists user_group_roles cascade;
 
-    drop sequence Sequence_Group;
+    drop sequence sequence_role;
 
-    drop sequence Sequence_Role;
+    drop sequence sequence_user;
 
-    drop sequence Sequence_User;
+    drop sequence sequence_user_group;
 
-    create sequence Sequence_Group start 1 increment 1;
+    create sequence sequence_role start 1 increment 1;
 
-    create sequence Sequence_Role start 1 increment 1;
+    create sequence sequence_user start 1 increment 1;
 
-    create sequence Sequence_User start 1 increment 1;
+    create sequence sequence_user_group start 1 increment 1;
 
-    create table Role (
+    create table role (
         id int8 not null,
         uuid varchar(255),
-        createdBy int8,
-        createdDate bytea,
-        updatedBy int8,
-        updatedDate bytea,
+        created_by int8,
+        created_date bytea,
+        updated_by int8,
+        updated_date bytea,
         version int8,
         active boolean not null,
         name varchar(255),
         primary key (id)
     );
 
-    create table User (
+    create table user (
         id int8 not null,
         uuid varchar(255),
-        createdBy int8,
-        createdDate bytea,
-        updatedBy int8,
-        updatedDate bytea,
+        created_by int8,
+        created_date bytea,
+        updated_by int8,
+        updated_date bytea,
         version int8,
         username varchar(255),
         primary key (id)
     );
 
-    create table User_Role (
-        User_id int8 not null,
+    create table user_roles (
+        user_id int8 not null,
         roles_id int8 not null,
-        primary key (User_id, roles_id)
+        primary key (user_id, roles_id)
     );
 
-    create table User_UserGroup (
-        User_id int8 not null,
-        userGroups_id int8 not null,
-        primary key (User_id, userGroups_id)
+    create table user_user_groups (
+        user_id int8 not null,
+        user_groups_id int8 not null,
+        primary key (user_id, user_groups_id)
     );
 
-    create table UserGroup (
+    create table user_group (
         id int8 not null,
         uuid varchar(255),
-        createdBy int8,
-        createdDate bytea,
-        updatedBy int8,
-        updatedDate bytea,
+        created_by int8,
+        created_date bytea,
+        updated_by int8,
+        updated_date bytea,
         version int8,
         active boolean not null,
         name varchar(255),
         primary key (id)
     );
 
-    create table UserGroup_Role (
-        UserGroup_id int8 not null,
+    create table user_group_roles (
+        user_group_id int8 not null,
         roles_id int8 not null,
-        primary key (UserGroup_id, roles_id)
+        primary key (user_group_id, roles_id)
     );
 
-    alter table User_Role 
-        add constraint FK7qnwwe579g9frolyprat52l4d 
+    alter table user_roles 
+        add constraint FKj9553ass9uctjrmh0gkqsmv0d 
         foreign key (roles_id) 
-        references Role;
+        references role;
 
-    alter table User_Role 
-        add constraint FKc52d1rv3ijbpu6lo2v3rej1tx 
-        foreign key (User_id) 
-        references User;
+    alter table user_roles 
+        add constraint FK55itppkw3i07do3h7qoclqd4k 
+        foreign key (user_id) 
+        references user;
 
-    alter table User_UserGroup 
-        add constraint FKjm0hncrkstjukhunsw3joyatc 
-        foreign key (userGroups_id) 
-        references UserGroup;
+    alter table user_user_groups 
+        add constraint FKcyk8vtwqqmtm3xv1onm1r81ke 
+        foreign key (user_groups_id) 
+        references user_group;
 
-    alter table User_UserGroup 
-        add constraint FKoemvh3b2apfvls9vsu63gp6kk 
-        foreign key (User_id) 
-        references User;
+    alter table user_user_groups 
+        add constraint FKddywflvu1fntus1ch9v9opcew 
+        foreign key (user_id) 
+        references user;
 
-    alter table UserGroup_Role 
-        add constraint FKfhbft3d9vbm9mqq2gxthimkw1 
+    alter table user_group_roles 
+        add constraint FK99vs3uto0r291mfbq6028xib1 
         foreign key (roles_id) 
-        references Role;
+        references role;
 
-    alter table UserGroup_Role 
-        add constraint FK39n818mnc83gkgct72fhtkp37 
-        foreign key (UserGroup_id) 
-        references UserGroup;
+    alter table user_group_roles 
+        add constraint FKhf7dawmx36sxv21p86y3q3ym 
+        foreign key (user_group_id) 
+        references user_group;

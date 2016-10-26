@@ -31,6 +31,9 @@ spring:
     hibernate:
       use-new-id-generator-mappings: true
       ddl-auto: create-drop
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 management:
   shell:
     auth:
