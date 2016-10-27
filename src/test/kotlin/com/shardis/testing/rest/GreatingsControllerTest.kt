@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner
  * Created by Tomasz Kucharzyk
  */
 @RunWith(SpringRunner::class)
-@SpringBootTest
+@SpringBootTest()
 class GreatingsControllerTest {
 
     @Autowired private lateinit var greatingsController: GreatingsController

@@ -16,7 +16,7 @@ import java.io.File
  */
 
 @RunWith(SpringRunner::class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest()
 class SchemaExporterTests {
 
     @Autowired lateinit var env: Environment

@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext
 /**
  * Created by Tomasz Kucharzyk
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @RunWith(SpringRunner::class)
 class AuthControllerTests {
 
