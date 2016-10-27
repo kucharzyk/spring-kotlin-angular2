@@ -1,4 +1,4 @@
-package com.shardis.auth.jwt
+package com.shardis.security.jwt
 
 import org.springframework.security.core.Authentication
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler

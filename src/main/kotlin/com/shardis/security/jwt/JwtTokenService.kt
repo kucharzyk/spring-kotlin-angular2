@@ -1,7 +1,7 @@
-package com.shardis.auth.jwt
+package com.shardis.security.jwt
 
 import com.shardis.ShardisProperties
-import com.shardis.auth.support.ShardisUserDetails
+import com.shardis.security.support.ShardisUserDetails
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm

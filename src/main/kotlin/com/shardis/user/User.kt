@@ -3,10 +3,7 @@ package com.shardis.user
 import com.shardis.jpa.AuditedEntity
 import com.shardis.role.Role
 import com.shardis.usergroup.UserGroup
-import javax.persistence.CascadeType
-import javax.persistence.Entity
-import javax.persistence.ManyToMany
-import javax.persistence.SequenceGenerator
+import javax.persistence.*
 
 /**
  * Created by Tomasz Kucharzyk
@@ -19,7 +16,20 @@ class User() : AuditedEntity() {
         this.username = username
     }
 
+    @Column(nullable = false, length = 250, unique = true)
     var username: String = ""
+
+    @Column(nullable = false, length = 120)
+    var firstName: String = ""
+
+    @Column(nullable = false, length = 120)
+    var lastName: String = ""
+
+    @Column(nullable = false, length = 120)
+    var email: String = ""
+
+    @Column(nullable = false)
+    var activated: Boolean = false
 
     @ManyToMany(targetEntity = Role::class, cascade = arrayOf(CascadeType.MERGE, CascadeType.PERSIST))
     var roles: Set<Role> = emptySet()

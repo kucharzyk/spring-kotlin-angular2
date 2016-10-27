@@ -1,4 +1,4 @@
-package com.shardis.auth.jwt
+package com.shardis.security.jwt
 
 import com.shardis.ShardisProperties
 import org.springframework.security.authentication.AnonymousAuthenticationToken

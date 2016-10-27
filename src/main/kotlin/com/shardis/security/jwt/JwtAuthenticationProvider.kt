@@ -1,6 +1,5 @@
-package com.shardis.auth.jwt
+package com.shardis.security.jwt
 
-import com.shardis.auth.jwt.JwtTokenService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider
 import org.springframework.security.core.userdetails.UserDetails

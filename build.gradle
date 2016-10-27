@@ -1,4 +1,5 @@
 buildscript {
+
   ext {
     kotlinVersion = "1.0.4"
     springBootVersion = "1.4.1.RELEASE"
@@ -6,16 +7,18 @@ buildscript {
     gradleNodePluginVersion = "0.13"
     reflectionsVersion = "0.9.10"
   }
+
   repositories {
     mavenCentral()
     maven {
       url "https://plugins.gradle.org/m2/"
     }
   }
+
   dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-    classpath("com.moowork.gradle:gradle-node-plugin:${gradleNodePluginVersion}")
+    classpath group: "org.springframework.boot", name: "spring-boot-gradle-plugin", version: "${springBootVersion}"
+    classpath group: "org.jetbrains.kotlin", name: "kotlin-gradle-plugin", version: "${kotlinVersion}"
+    classpath group: "com.moowork.gradle", name: "gradle-node-plugin", version: "${gradleNodePluginVersion}"
   }
 }
 
@@ -52,31 +55,30 @@ processResources {
 }
 
 dependencies {
-  compile("org.springframework.boot:spring-boot-starter-actuator")
-  compile("org.springframework.boot:spring-boot-actuator-docs")
-  compile("org.springframework.boot:spring-boot-starter-cache")
-  compile("org.springframework.boot:spring-boot-starter-data-jpa")
-  compile("org.springframework.boot:spring-boot-devtools")
-  compile("org.springframework.boot:spring-boot-starter-mail")
-  compile("org.springframework.boot:spring-boot-starter-remote-shell")
-  compile("org.springframework.retry:spring-retry")
-  compile("org.springframework.boot:spring-boot-starter-security")
-  compile("org.springframework.boot:spring-boot-starter-validation")
-  compile("org.springframework.boot:spring-boot-starter-web")
-  compile("org.springframework.boot:spring-boot-starter-websocket")
-  compile "org.springframework.boot:spring-boot-configuration-processor"
-  kapt "org.springframework.boot:spring-boot-configuration-processor"
-  compile "org.hibernate:hibernate-java8"
-  compile "org.hibernate:hibernate-envers"
-  compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
-  compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
-  compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
-  compile("org.reflections:reflections:${reflectionsVersion}")
-  runtime("com.h2database:h2")
-  runtime("org.postgresql:postgresql")
-  testCompile("org.springframework.boot:spring-boot-starter-test")
-  testCompile("org.springframework.security:spring-security-test")
-  testCompile("org.springframework.restdocs:spring-restdocs-mockmvc")
+  compile group: "org.springframework.boot", name: "spring-boot-starter-actuator"
+  compile group: "org.springframework.boot", name: "spring-boot-actuator-docs"
+  compile group: "org.springframework.boot", name: "spring-boot-starter-cache"
+  compile group: "org.springframework.boot", name: "spring-boot-starter-data-jpa"
+  compile group: "org.springframework.boot", name: "spring-boot-devtools"
+  compile group: "org.springframework.boot", name: "spring-boot-starter-mail"
+  compile group: "org.springframework.boot", name: "spring-boot-starter-remote-shell"
+  compile group: "org.springframework.boot", name: "spring-boot-starter-security"
+  compile group: "org.springframework.boot", name: "spring-boot-starter-validation"
+  compile group: "org.springframework.boot", name: "spring-boot-starter-web"
+  compile group: "org.springframework.boot", name: "spring-boot-starter-websocket"
+  compile group: "org.springframework.boot", name: "spring-boot-configuration-processor"
+  kapt group: "org.springframework.boot", name: "spring-boot-configuration-processor"
+  compile group: "org.hibernate", name: "hibernate-java8"
+  compile group: "org.hibernate", name: "hibernate-envers"
+  compile group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-jsr310"
+  compile group: "org.jetbrains.kotlin", name: "kotlin-stdlib", version: "${kotlinVersion}"
+  compile group: "io.jsonwebtoken", name: "jjwt", version: "${jjwtVersion}"
+  runtime group: "com.h2database", name: "h2"
+  runtime group: "org.postgresql", name: "postgresql"
+  testCompile group: "org.springframework.boot", name: "spring-boot-starter-test"
+  testCompile group: "org.springframework.security", name: "spring-security-test"
+  testCompile group: "org.springframework.restdocs", name: "spring-restdocs-mockmvc"
+  testCompile group: "org.reflections", name: "reflections", version: "${reflectionsVersion}"
 }
 
 task npmBuild(type: NpmTask) {
@@ -102,6 +104,6 @@ test.dependsOn npmTest
 
 clean.delete << file("node_modules")
 sourceSets {
-  main.java.srcDirs += 'src/main/kotlin'
+  main.java.srcDirs += "src/main/kotlin"
 }
 

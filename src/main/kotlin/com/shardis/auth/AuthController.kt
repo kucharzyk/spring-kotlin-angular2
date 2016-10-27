@@ -1,7 +1,7 @@
 package com.shardis.auth
 
-import com.shardis.auth.jwt.JwtTokenService
-import com.shardis.auth.support.SecurityUtils
+import com.shardis.security.jwt.JwtTokenService
+import com.shardis.security.support.SecurityUtils
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController

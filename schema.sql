@@ -43,26 +43,30 @@
 
     create table role (
         id int8 not null,
-        uuid varchar(255),
-        created_by int8,
-        created_date bytea,
+        uuid varchar(255) not null,
+        created_by int8 not null,
+        created_date timestamp not null,
         updated_by int8,
-        updated_date bytea,
-        version int8,
+        updated_date timestamp,
+        version int8 not null,
         active boolean not null,
-        name varchar(255),
+        name varchar(250) not null,
         primary key (id)
     );
 
     create table user (
         id int8 not null,
-        uuid varchar(255),
-        created_by int8,
-        created_date bytea,
+        uuid varchar(255) not null,
+        created_by int8 not null,
+        created_date timestamp not null,
         updated_by int8,
-        updated_date bytea,
-        version int8,
-        username varchar(255),
+        updated_date timestamp,
+        version int8 not null,
+        activated boolean not null,
+        email varchar(120) not null,
+        first_name varchar(120) not null,
+        last_name varchar(120) not null,
+        username varchar(250) not null,
         primary key (id)
     );
 
@@ -80,14 +84,14 @@
 
     create table user_group (
         id int8 not null,
-        uuid varchar(255),
-        created_by int8,
-        created_date bytea,
+        uuid varchar(255) not null,
+        created_by int8 not null,
+        created_date timestamp not null,
         updated_by int8,
-        updated_date bytea,
-        version int8,
+        updated_date timestamp,
+        version int8 not null,
         active boolean not null,
-        name varchar(255),
+        name varchar(250) not null,
         primary key (id)
     );
 
@@ -96,6 +100,15 @@
         roles_id int8 not null,
         primary key (user_group_id, roles_id)
     );
+
+    alter table role 
+        add constraint UK_8sewwnpamngi6b1dwaa88askk unique (name);
+
+    alter table user 
+        add constraint UK_sb8bbouer5wak8vyiiy4pf2bx unique (username);
+
+    alter table user_group 
+        add constraint UK_kas9w8ead0ska5n3csefp2bpp unique (name);
 
     alter table user_roles 
         add constraint FKj9553ass9uctjrmh0gkqsmv0d 
