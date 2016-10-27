@@ -30,8 +30,8 @@ apply plugin: "com.moowork.node"
 project.version = "0.0.1-SNAPSHOT"
 
 node {
-  version = "6.9.1"
-  npmVersion = "3.10.3"
+  version = "7.0.0"
+  npmVersion = "3.10.8"
   download = true
   workDir = file("${project.buildDir}/node")
   nodeModulesDir = file("${project.projectDir}")
