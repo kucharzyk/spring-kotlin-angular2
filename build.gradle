@@ -53,6 +53,10 @@ processResources {
     expand(project.properties)
   }
 }
+configurations {
+  compile.exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
+}
+
 
 dependencies {
   compile group: "org.springframework.boot", name: "spring-boot-starter-actuator"
@@ -64,6 +68,7 @@ dependencies {
   compile group: "org.springframework.boot", name: "spring-boot-starter-remote-shell"
   compile group: "org.springframework.boot", name: "spring-boot-starter-security"
   compile group: "org.springframework.boot", name: "spring-boot-starter-validation"
+  compile group: "org.springframework.boot", name: "spring-boot-starter-undertow"
   compile group: "org.springframework.boot", name: "spring-boot-starter-web"
   compile group: "org.springframework.boot", name: "spring-boot-starter-websocket"
   compile group: "org.springframework.boot", name: "spring-boot-configuration-processor"

@@ -19,5 +19,6 @@ Project is at early alpha stage - Don't use it now - It's a mess
 * Angular Material
 * Angular-Cli
 * SCSS
+* Undertow
 
 ## Changelog
