@@ -32,9 +32,9 @@ class User() : AuditedEntity() {
     var activated: Boolean = false
 
     @ManyToMany(targetEntity = Role::class, cascade = arrayOf(CascadeType.MERGE, CascadeType.PERSIST))
-    var roles: Set<Role> = emptySet()
+    var roles: MutableSet<Role> = mutableSetOf()
 
     @ManyToMany(targetEntity = UserGroup::class, cascade = arrayOf(CascadeType.MERGE, CascadeType.PERSIST))
-    var userGroups: Set<UserGroup> = emptySet()
+    var userGroups: MutableSet<UserGroup> = mutableSetOf()
 
 }

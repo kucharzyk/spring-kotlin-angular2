@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails
 class ShardisUserDetails(
     val id: Long,
     private val username: String,
-    val token: String,
+    val token: String?,
     private val authorities: Collection<GrantedAuthority>
 ) : UserDetails {
 
