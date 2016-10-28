@@ -20,6 +20,7 @@ buildscript {
     classpath group: "org.jetbrains.kotlin", name: "kotlin-gradle-plugin", version: "${kotlinVersion}"
     classpath group: "com.moowork.gradle", name: "gradle-node-plugin", version: "${gradleNodePluginVersion}"
   }
+
 }
 
 apply plugin: "kotlin"
@@ -41,6 +42,19 @@ jar {
   baseName = "shardis"
   version = project.version
 }
+
+test {
+
+  testLogging {
+    events "passed", "skipped", "failed", "standardOut", "standardError"
+  }
+
+  afterTest { desc, result ->
+    println "Executed test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+  }
+
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -48,11 +62,16 @@ repositories {
   mavenCentral()
 }
 
+sourceSets {
+  main.java.srcDirs += "src/main/kotlin"
+}
+
 processResources {
   filesMatching("**/application.yml") {
     expand(project.properties)
   }
 }
+
 configurations {
   compile.exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
 }
@@ -108,7 +127,4 @@ processResources.dependsOn npmBuild
 test.dependsOn npmTest
 
 clean.delete << file("node_modules")
-sourceSets {
-  main.java.srcDirs += "src/main/kotlin"
-}
 
