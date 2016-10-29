@@ -1,7 +1,9 @@
 package com.shardis.security.jwt
 
 import com.shardis.ShardisProperties
+import com.shardis.extensions.toDate
 import com.shardis.security.support.ShardisUserDetails
+import io.jsonwebtoken.Claims
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
@@ -10,6 +12,9 @@ import org.slf4j.LoggerFactory
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.util.*
 
 /**
  * Created by Tomasz Kucharzyk
@@ -24,7 +29,7 @@ open class JwtTokenService(private val shardisProperties: ShardisProperties) {
     fun parseToken(token: String?): UserDetails {
         if (token != null) {
             try {
-                val body = Jwts.parser()
+                val body:Claims = Jwts.parser()
                     .setSigningKey(shardisProperties.security.secret)
                     .parseClaimsJws(token)
                     .body
@@ -40,6 +45,9 @@ open class JwtTokenService(private val shardisProperties: ShardisProperties) {
     fun generateToken(username: String, userId: Long): String {
         return Jwts.builder()
             .setSubject(username)
+            .setIssuedAt(LocalDateTime.now().toDate())
+            .setNotBefore(LocalDateTime.now().toDate())
+            .setExpiration(LocalDateTime.now().plusMinutes(30L).toDate())
             .claim("userId", userId)
             .claim("role", "ROLE_USER")
             .signWith(SignatureAlgorithm.HS512, shardisProperties.security.secret)
