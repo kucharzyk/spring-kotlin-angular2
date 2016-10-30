@@ -1,4 +1,7 @@
 
+    alter table jwt_token 
+        drop constraint FKrma6363nvuvw4npx6xidhqeov;
+
     alter table user_roles 
         drop constraint FKj9553ass9uctjrmh0gkqsmv0d;
 
@@ -17,6 +20,8 @@
     alter table user_group_roles 
         drop constraint FKhf7dawmx36sxv21p86y3q3ym;
 
+    drop table if exists jwt_token cascade;
+
     drop table if exists role cascade;
 
     drop table if exists user cascade;
@@ -29,17 +34,38 @@
 
     drop table if exists user_group_roles cascade;
 
+    drop sequence sequence_jwt_token;
+
     drop sequence sequence_role;
 
     drop sequence sequence_user;
 
     drop sequence sequence_user_group;
 
+    create sequence sequence_jwt_token start 1 increment 1;
+
     create sequence sequence_role start 1 increment 1;
 
     create sequence sequence_user start 1 increment 1;
 
     create sequence sequence_user_group start 1 increment 1;
+
+    create table jwt_token (
+        id int8 not null,
+        uuid varchar(255) not null,
+        created_by int8 not null,
+        created_date timestamp not null,
+        updated_by int8,
+        updated_date timestamp,
+        version int8 not null,
+        expiration_date timestamp not null,
+        invalidated boolean not null,
+        invalidation_date timestamp,
+        ip_adress varchar(39) not null,
+        token TEXT not null,
+        user_id int8 not null,
+        primary key (id)
+    );
 
     create table role (
         id int8 not null,
@@ -109,6 +135,11 @@
 
     alter table user_group 
         add constraint UK_kas9w8ead0ska5n3csefp2bpp unique (name);
+
+    alter table jwt_token 
+        add constraint FKrma6363nvuvw4npx6xidhqeov 
+        foreign key (user_id) 
+        references user;
 
     alter table user_roles 
         add constraint FKj9553ass9uctjrmh0gkqsmv0d 

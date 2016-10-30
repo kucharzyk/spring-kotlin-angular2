@@ -13,8 +13,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
-import java.time.ZoneId
-import java.util.*
 
 /**
  * Created by Tomasz Kucharzyk
@@ -29,7 +27,7 @@ open class JwtTokenService(private val shardisProperties: ShardisProperties) {
     fun parseToken(token: String?): UserDetails {
         if (token != null) {
             try {
-                val body:Claims = Jwts.parser()
+                val body: Claims = Jwts.parser()
                     .setSigningKey(shardisProperties.security.secret)
                     .parseClaimsJws(token)
                     .body
