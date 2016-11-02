@@ -2,7 +2,8 @@ shardis:
   version: ${version}
   security:
     header: Authorization
-    secret: secret
+    jwtSecret: secret
+    passwordSecret: secret
 server:
     port: ${port:8080}
     context-path: /

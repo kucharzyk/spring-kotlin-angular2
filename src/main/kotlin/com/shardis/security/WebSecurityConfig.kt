@@ -1,10 +1,7 @@
 package com.shardis.security
 
 import com.shardis.ShardisProperties
-import com.shardis.security.jwt.JwtAuthenticationEntryPoint
-import com.shardis.security.jwt.JwtAuthenticationProvider
-import com.shardis.security.jwt.JwtAuthenticationSuccessHandler
-import com.shardis.security.jwt.JwtAuthenticationTokenFilter
+import com.shardis.security.jwt.*
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -26,14 +23,19 @@ import java.util.*
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 open class WebSecurityConfig(
     private val unauthorizedHandler: JwtAuthenticationEntryPoint,
-    private val authenticationProvider: JwtAuthenticationProvider,
-    private val shardisProperties: ShardisProperties
+    private val shardisProperties: ShardisProperties,
+    private val jwtTokenAuthService: JwtTokenAuthService
 ) : WebSecurityConfigurerAdapter(false) {
 
 
     @Bean
+    open fun jwtAuthenticationProvider(): AuthenticationProvider {
+        return JwtAuthenticationProvider(jwtTokenAuthService)
+    }
+
+    @Bean
     override fun authenticationManager(): AuthenticationManager {
-        return ProviderManager(Arrays.asList(authenticationProvider as AuthenticationProvider))
+        return ProviderManager(Arrays.asList(jwtAuthenticationProvider()))
     }
 
     @Bean

@@ -16,6 +16,7 @@ open class ShardisProperties {
 
     open class Security {
         var header = "Authorization"
-        var secret: String? = null
+        var jwtSecret: String = "secret"
+        var passwordSecret: String = "secret"
     }
 }

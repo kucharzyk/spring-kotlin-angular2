@@ -58,6 +58,7 @@
         updated_by int8,
         updated_date timestamp,
         version int8 not null,
+        active boolean not null,
         expiration_date timestamp not null,
         invalidated boolean not null,
         invalidation_date timestamp,
@@ -92,6 +93,7 @@
         email varchar(120) not null,
         first_name varchar(120) not null,
         last_name varchar(120) not null,
+        password varchar(512) not null,
         username varchar(250) not null,
         primary key (id)
     );

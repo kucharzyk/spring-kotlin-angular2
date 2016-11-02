@@ -1,5 +1,6 @@
 package com.shardis.user
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.shardis.jpa.AuditedEntity
 import com.shardis.role.Role
 import com.shardis.usergroup.UserGroup
@@ -27,6 +28,10 @@ class User() : AuditedEntity() {
 
     @Column(nullable = false, length = 120)
     var email: String = ""
+
+    @JsonIgnore
+    @Column(nullable = false, length = 512)
+    var password: String = ""
 
     @Column(nullable = false)
     var activated: Boolean = false

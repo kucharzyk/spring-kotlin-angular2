@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component
 /**
  * Created by Tomasz Kucharzyk
  */
-@Component
-open class JwtAuthenticationProvider(private val jwtTokenService: JwtTokenService) : AbstractUserDetailsAuthenticationProvider() {
+
+open class JwtAuthenticationProvider(private val jwtTokenAuthService: JwtTokenAuthService) : AbstractUserDetailsAuthenticationProvider() {
 
     override fun supports(authentication: Class<*>): Boolean = JwtAuthenticationToken::class.java.isAssignableFrom(authentication)
 
@@ -19,6 +19,6 @@ open class JwtAuthenticationProvider(private val jwtTokenService: JwtTokenServic
     override fun retrieveUser(username: String, authentication: UsernamePasswordAuthenticationToken): UserDetails {
         val jwtAuthenticationToken = authentication as JwtAuthenticationToken
         val token = jwtAuthenticationToken.token
-        return jwtTokenService.parseToken(token)
+        return jwtTokenAuthService.parseToken(token)
     }
 }
