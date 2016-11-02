@@ -27,6 +27,7 @@ apply plugin: "kotlin"
 apply plugin: "eclipse"
 apply plugin: "spring-boot"
 apply plugin: "com.moowork.node"
+apply plugin: "jacoco"
 
 project.version = "0.0.1-SNAPSHOT"
 
@@ -53,6 +54,12 @@ test {
     println "Executed test ${desc.name} [${desc.className}] with result: ${result.resultType}"
   }
 
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
 }
 
 sourceCompatibility = 1.8
