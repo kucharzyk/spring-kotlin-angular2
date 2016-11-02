@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/shardis/shardis.svg?branch=master)](https://travis-ci.org/shardis/shardis)
 [![Dependencies](https://david-dm.org/shardis/shardis.svg)](https://david-dm.org/shardis/shardis)
+[![codecov](https://codecov.io/gh/shardis/shardis/branch/master/graph/badge.svg)](https://codecov.io/gh/shardis/shardis)
+
 
 ## Project description
 
