@@ -60,7 +60,7 @@
     "clean:install": "npm set progress=false && npm install",
     "preclean:start": "npm run clean",
     "clean:start": "npm start",
-    "coveralls": "cat ./coverage/coverage.lcov | coveralls",
+    "coveralls": "cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
     "e2e:live": "protractor --elementExplorer",
