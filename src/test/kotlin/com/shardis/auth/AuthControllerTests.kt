@@ -39,10 +39,10 @@ class AuthControllerTests {
             .apply<DefaultMockMvcBuilder>(SecurityMockMvcConfigurers.springSecurity())
             .build()
     }
-.   
-.   @Test
-.   fun emptyTest(){
-.   }
+   
+    @Test
+    fun emptyTest(){
+    }
 
 //    @Test
 //    fun requestToken() {
