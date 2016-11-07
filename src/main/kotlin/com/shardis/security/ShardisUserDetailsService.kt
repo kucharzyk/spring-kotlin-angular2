@@ -17,15 +17,15 @@ import javax.transaction.Transactional
 @Service
 open class ShardisUserDetailsService(val userRepository: UserRepository) : UserDetailsService {
 
-    override fun loadUserByUsername(username: String): UserDetails {
+    override fun loadUserByUsername(username: String): UserDetails? {
         val user: User? = userRepository.findByUsername(username)
 
         if (user != null) {
             val roles: List<GrantedAuthority> = user.roles.map { SimpleGrantedAuthority(it.name) }
-            return ShardisUserDetails(user.id!!, user.username, null, roles)
+            return ShardisUserDetails(user.id!!, user.username, null, roles, user.password)
         }
 
-        return ShardisUserDetails(-1, "ANONYMOUS", null, emptyList())
+        return null
     }
 
 }

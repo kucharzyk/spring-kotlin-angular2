@@ -17,6 +17,6 @@ class UserGroup() : AuditedEntity() {
     @Column(nullable = false)
     var active: Boolean = true
 
-    @ManyToMany(targetEntity = Role::class, cascade = arrayOf(CascadeType.MERGE, CascadeType.PERSIST))
+    @ManyToMany(targetEntity = Role::class, cascade = arrayOf(CascadeType.MERGE))
     var roles: MutableSet<Role> = mutableSetOf()
 }

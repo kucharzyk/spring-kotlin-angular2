@@ -23,9 +23,7 @@ import java.time.LocalDateTime
  */
 @Service
 open class JwtTokenAuthService(
-    private val shardisProperties: ShardisProperties,
-    private val userRepository: UserRepository,
-    private val shardisPasswordEncoder: ShardisPasswordEncoder
+    private val shardisProperties: ShardisProperties
 ) {
 
     companion object {
@@ -60,26 +58,4 @@ open class JwtTokenAuthService(
             .compact()
     }
 
-    fun authenticate(username: String?, password: String?): String {
-        if (username == null) {
-            throw UsernameNotFoundException("user not found")
-        }
-
-        val user = userRepository.findByUsername(username) ?: throw UsernameNotFoundException("user not found")
-
-        if (!user.activated) {
-            throw DisabledException("user is not activated")
-        }
-
-        if (password == null) {
-            throw BadCredentialsException("no password provided")
-        }
-        val encodedPassword = shardisPasswordEncoder.encode(password)
-
-        if (encodedPassword == user.password) {
-            return generateToken(username, user.id!!)
-        } else {
-            throw BadCredentialsException("bad credentials")
-        }
-    }
 }

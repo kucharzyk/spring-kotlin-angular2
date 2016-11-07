@@ -27,7 +27,7 @@ open class AuditedEntity : BaseEntity() {
     private var createdDate: LocalDateTime? = null
 
     @CreatedBy
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     @JsonIgnore
     var createdBy: Long? = null
 

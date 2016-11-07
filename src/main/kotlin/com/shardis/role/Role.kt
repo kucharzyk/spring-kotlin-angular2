@@ -12,6 +12,11 @@ import javax.persistence.SequenceGenerator
 @SequenceGenerator(allocationSize = 1, name = "sequenceIdGenerator", sequenceName = "sequence_role")
 class Role() : AuditedEntity() {
 
+    constructor(name:String) : this() {
+        this.name = name
+        this.active = true
+    }
+
     @Column(nullable = false, length = 250, unique = true, updatable = false)
     var name: String = ""
 

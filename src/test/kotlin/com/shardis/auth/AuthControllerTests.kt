@@ -40,28 +40,28 @@ class AuthControllerTests {
             .build()
     }
 
-    @Test
-    fun requestToken() {
-
-        val tokenResult = this.mockMvc
-            .perform(MockMvcRequestBuilders.get("/auth/token"))
-            .andExpect(MockMvcResultMatchers.status().isOk)
-            .andReturn()
-
-        val token = tokenResult.response.contentAsString
-
-        assert(token.split(".").size == 3)
-
-        val principalResult = this.mockMvc
-            .perform(
-                MockMvcRequestBuilders
-                    .get("/auth/principal")
-                    .header(shardisProperties.security.header, arrayOf("Bearer $token"))
-            )
-            .andExpect(MockMvcResultMatchers.status().isOk)
-            .andReturn()
-
-        Assert.assertEquals("test", principalResult.response.contentAsString)
-    }
+//    @Test
+//    fun requestToken() {
+//
+//        val tokenResult = this.mockMvc
+//            .perform(MockMvcRequestBuilders.get("/auth/token"))
+//            .andExpect(MockMvcResultMatchers.status().isOk)
+//            .andReturn()
+//
+//        val token = tokenResult.response.contentAsString
+//
+//        assert(token.split(".").size == 3)
+//
+//        val principalResult = this.mockMvc
+//            .perform(
+//                MockMvcRequestBuilders
+//                    .get("/auth/principal")
+//                    .header(shardisProperties.security.header, arrayOf("Bearer $token"))
+//            )
+//            .andExpect(MockMvcResultMatchers.status().isOk)
+//            .andReturn()
+//
+//        Assert.assertEquals("test", principalResult.response.contentAsString)
+//    }
 
 }

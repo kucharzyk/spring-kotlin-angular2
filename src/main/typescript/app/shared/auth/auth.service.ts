@@ -47,18 +47,13 @@ export class AuthService {
         reject('Password cannot be blank');
       }
 
-      let basicAuthHeader = btoa(`acme:acmesecret`);
-
       let headers = new Headers();
-      headers.append('Authorization', `Basic  ${basicAuthHeader}`);
-      headers.append('Accept', `application/json`);
       headers.append('Content-Type', `application/x-www-form-urlencoded`);
 
-      let payload = 'username=' + encodeURIComponent(username) + '&password='
-        + encodeURIComponent(password) + '&grant_type=password';
+      let payload = 'username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
 
       this.http
-        .post('/api/oauth/token', payload, {headers: headers})
+        .post('/api/authentication', payload, {headers: headers})
         .subscribe(
           data => {
             this.tokenData = data.json();

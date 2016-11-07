@@ -10,7 +10,8 @@ class ShardisUserDetails(
     val id: Long,
     private val username: String,
     val token: String?,
-    private val authorities: Collection<GrantedAuthority>
+    private val authorities: Collection<GrantedAuthority>,
+    private val password:String = ""
 ) : UserDetails {
 
     override fun getUsername(): String = username
@@ -25,6 +26,6 @@ class ShardisUserDetails(
 
     override fun isEnabled(): Boolean = true
 
-    override fun getPassword(): String? = null
+    override fun getPassword(): String? = password
 
 }

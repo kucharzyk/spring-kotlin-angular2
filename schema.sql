@@ -53,7 +53,7 @@
     create table jwt_token (
         id int8 not null,
         uuid varchar(255) not null,
-        created_by int8 not null,
+        created_by int8,
         created_date timestamp not null,
         updated_by int8,
         updated_date timestamp,
@@ -71,7 +71,7 @@
     create table role (
         id int8 not null,
         uuid varchar(255) not null,
-        created_by int8 not null,
+        created_by int8,
         created_date timestamp not null,
         updated_by int8,
         updated_date timestamp,
@@ -84,7 +84,7 @@
     create table user (
         id int8 not null,
         uuid varchar(255) not null,
-        created_by int8 not null,
+        created_by int8,
         created_date timestamp not null,
         updated_by int8,
         updated_date timestamp,
@@ -113,7 +113,7 @@
     create table user_group (
         id int8 not null,
         uuid varchar(255) not null,
-        created_by int8 not null,
+        created_by int8,
         created_date timestamp not null,
         updated_by int8,
         updated_date timestamp,

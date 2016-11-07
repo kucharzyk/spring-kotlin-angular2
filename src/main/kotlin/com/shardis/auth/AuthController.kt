@@ -15,12 +15,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping(path = arrayOf("/auth/"))
 class AuthController(val jwtTokenAuthService: JwtTokenAuthService) {
 
-    @RequestMapping(path = arrayOf("/login"), method = arrayOf(RequestMethod.POST))
-    fun login(usernamePasswordDto: UsernamePasswordDto): String {
-        val (username,password) = usernamePasswordDto
-        return jwtTokenAuthService.authenticate(username,password)
-    }
-
     @RequestMapping(path = arrayOf("/token"), method = arrayOf(RequestMethod.GET))
     fun token(): String {
         return jwtTokenAuthService.generateToken("test", 1)
