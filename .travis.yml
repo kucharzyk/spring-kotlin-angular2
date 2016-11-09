@@ -6,6 +6,10 @@ jdk:
   - oraclejdk8
 env:
   - CXX=g++-4.8
+cache:
+  bundler: true
+  directories:
+  - node_modules # NPM packages
 addons:
   apt:
     sources:
