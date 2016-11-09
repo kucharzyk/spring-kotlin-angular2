@@ -13,6 +13,7 @@ cache:
   bundler: true
   directories:
   - node_modules
+  - build/node
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 addons:
