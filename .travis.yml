@@ -6,10 +6,15 @@ jdk:
   - oraclejdk8
 env:
   - CXX=g++-4.8
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   bundler: true
   directories:
-  - node_modules # NPM packages
+  - node_modules
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
 addons:
   apt:
     sources:
