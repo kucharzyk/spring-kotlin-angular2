@@ -21,7 +21,6 @@ import {
   MdTooltipModule,
   MdButtonToggleModule,
   MdDialogModule,
-  MdSelectModule,
   MdSnackBarModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
@@ -44,7 +43,6 @@ export const COMMON_TESTING_MODULES = [
   MdProgressBarModule.forRoot(),
   MdProgressCircleModule.forRoot(),
   MdRadioModule.forRoot(),
-  MdSelectModule.forRoot(),
   MdSidenavModule.forRoot(),
   MdSlideToggleModule.forRoot(),
   MdSliderModule.forRoot(),
