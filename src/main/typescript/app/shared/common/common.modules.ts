@@ -21,7 +21,6 @@ import {
   MdTooltipModule,
   MdButtonToggleModule,
   MdDialogModule,
-  MdSelectModule,
   MdSnackBarModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
@@ -45,7 +44,6 @@ export const COMMON_ROOT_MODULES = [
   MdProgressBarModule.forRoot(),
   MdProgressCircleModule.forRoot(),
   MdRadioModule.forRoot(),
-  MdSelectModule.forRoot(),
   MdSidenavModule.forRoot(),
   MdSlideToggleModule.forRoot(),
   MdSliderModule.forRoot(),
@@ -73,7 +71,6 @@ export const COMMON_CHILD_MODULES = [
   MdProgressBarModule,
   MdProgressCircleModule,
   MdRadioModule,
-  MdSelectModule,
   MdSidenavModule,
   MdSlideToggleModule,
   MdSliderModule,
