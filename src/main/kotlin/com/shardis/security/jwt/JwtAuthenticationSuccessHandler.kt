@@ -18,11 +18,13 @@ open class JwtAuthenticationSuccessHandler() : AuthenticationSuccessHandler {
     private lateinit var jwtTokenAuthService: JwtTokenAuthService
 
     override fun onAuthenticationSuccess(request: HttpServletRequest, response: HttpServletResponse, authentication: Authentication) {
-        val testToken = jwtTokenAuthService.generateToken(authentication.name, 0)
-        response.writer.use {
-            it.print(testToken)
-            it.flush()
+        if (request.servletPath == "/api/authentication" && authentication.name != "anonymous") {
+            val testToken = jwtTokenAuthService.generateToken(authentication.name, 0)
+            response.writer.use {
+                it.print(testToken)
+                it.flush()
+            }
+            response.status = HttpServletResponse.SC_OK
         }
-        response.status = HttpServletResponse.SC_OK
     }
 }
