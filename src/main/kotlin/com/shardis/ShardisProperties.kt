@@ -16,7 +16,10 @@ open class ShardisProperties {
 
     open class Security {
         var header = "Authorization"
+        var parameter = "auth_token"
         var jwtSecret: String = "secret"
         var passwordSecret: String = "secret"
+        var tokenValidityInSeconds: Long = 3600L
+        var tokenValidityInSecondsForRememberMe: Long = 3600L
     }
 }

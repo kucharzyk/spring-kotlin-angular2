@@ -11,7 +11,7 @@ class ShardisUserDetails(
     private val username: String,
     val token: String?,
     private val authorities: Collection<GrantedAuthority>,
-    private val password:String = ""
+    private val password: String = ""
 ) : UserDetails {
 
     override fun getUsername(): String = username

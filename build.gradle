@@ -26,7 +26,7 @@ buildscript {
 apply plugin: "java"
 apply plugin: "kotlin"
 apply plugin: "eclipse"
-apply plugin: "spring-boot"
+apply plugin: "org.springframework.boot"
 apply plugin: "com.moowork.node"
 apply plugin: "jacoco"
 
@@ -54,7 +54,7 @@ test {
   afterTest { desc, result ->
     println "Executed test ${desc.name} [${desc.className}] with result: ${result.resultType}"
   }
-  
+
 }
 
 jacocoTestReport {

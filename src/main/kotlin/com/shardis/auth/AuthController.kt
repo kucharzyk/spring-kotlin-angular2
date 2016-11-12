@@ -1,8 +1,9 @@
 package com.shardis.auth
 
-import com.shardis.auth.support.UsernamePasswordDto
 import com.shardis.security.jwt.JwtTokenAuthService
 import com.shardis.security.support.SecurityUtils
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
@@ -17,7 +18,7 @@ class AuthController(val jwtTokenAuthService: JwtTokenAuthService) {
 
     @RequestMapping(path = arrayOf("/token"), method = arrayOf(RequestMethod.GET))
     fun token(): String {
-        return jwtTokenAuthService.generateToken("test")
+        return jwtTokenAuthService.createToken(UsernamePasswordAuthenticationToken("test", "", listOf(SimpleGrantedAuthority("ROLE_TEST"))))
     }
 
     @RequestMapping(path = arrayOf("/principal"), method = arrayOf(RequestMethod.GET))

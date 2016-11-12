@@ -6,13 +6,7 @@ import org.springframework.beans.factory.BeanInitializationException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.authentication.AnonymousAuthenticationProvider
-import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.authentication.AuthenticationProvider
-import org.springframework.security.authentication.ProviderManager
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -21,7 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-import java.util.*
 
 /**
  * Created by Tomasz Kucharzyk
@@ -29,7 +22,7 @@ import java.util.*
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-open class WebSecurityConfig(
+open class SecurityConfig(
     private val jwtAuthenticationEntryPoint: JwtAuthenticationEntryPoint,
     private val shardisProperties: ShardisProperties,
     private val jwtTokenAuthService: JwtTokenAuthService,
@@ -46,38 +39,25 @@ open class WebSecurityConfig(
     }
 
     @Bean
-    open fun jwtAuthenticationProvider(): AuthenticationProvider {
-        return JwtAuthenticationProvider(jwtTokenAuthService)
+    open fun jwtAuthenticationTokenFilter(): JwtAuthenticationTokenFilter {
+        return JwtAuthenticationTokenFilter(shardisProperties, jwtTokenAuthService)
     }
 
-    @Bean
-    override fun authenticationManager(): AuthenticationManager {
-        return ProviderManager(Arrays.asList(
-            daoAuthenticationProvider(),
-            jwtAuthenticationProvider()
-        ))
-    }
-
-    @Bean
-    open fun authenticationTokenFilterBean(): JwtAuthenticationTokenFilter {
-        val authenticationTokenFilter = JwtAuthenticationTokenFilter(shardisProperties)
-        authenticationTokenFilter.setAuthenticationManager(authenticationManager())
-        authenticationTokenFilter.setAuthenticationSuccessHandler(jwtAuthenticationSuccessHandler)
-        return authenticationTokenFilter
-    }
-
-    @Bean
-    open fun daoAuthenticationProvider(): DaoAuthenticationProvider {
-        val authenticationProvider = DaoAuthenticationProvider()
-        authenticationProvider.setUserDetailsService(shardisUserDetailsService)
-        authenticationProvider.setPasswordEncoder(passwordEncoder())
-        return authenticationProvider
+    @Autowired
+    open fun configureGlobal(auth: AuthenticationManagerBuilder) {
+        try {
+            auth
+                .userDetailsService(shardisUserDetailsService)
+                .passwordEncoder(passwordEncoder())
+        } catch (e: Exception) {
+            throw BeanInitializationException("Security configuration failed", e)
+        }
     }
 
     override fun configure(httpSecurity: HttpSecurity) {
         httpSecurity
-
-            .httpBasic().disable()
+            .httpBasic()
+            .disable()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
@@ -100,15 +80,18 @@ open class WebSecurityConfig(
             .antMatchers("/api/**").authenticated()
             .anyRequest().permitAll()
             .and()
-            .csrf().disable()
+            .csrf()
+            .disable()
             .anonymous()
             .and()
             .exceptionHandling()
             .authenticationEntryPoint(jwtAuthenticationEntryPoint)
             .and()
-            .headers().frameOptions().disable()
+            .headers()
+            .frameOptions()
+            .disable()
             .and()
-            .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter::class.java)
+            .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter::class.java)
 
     }
 

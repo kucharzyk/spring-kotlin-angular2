@@ -2,18 +2,15 @@ package com.shardis.security.jwt
 
 import com.shardis.ShardisProperties
 import com.shardis.extensions.toDate
-import com.shardis.security.ShardisUserDetailsService
-import com.shardis.security.support.ShardisUserDetails
-import io.jsonwebtoken.Claims
-import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.SignatureException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.security.authentication.InsufficientAuthenticationException
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
 import org.springframework.security.core.authority.SimpleGrantedAuthority
-import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UsernameNotFoundException
+import org.springframework.security.core.userdetails.User
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
@@ -21,46 +18,59 @@ import java.time.LocalDateTime
  * Created by Tomasz Kucharzyk
  */
 @Service
-open class JwtTokenAuthService(
-    private val shardisProperties: ShardisProperties,
-    private val shardisUserDetailsService: ShardisUserDetailsService
-) {
+open class JwtTokenAuthService(private val shardisProperties: ShardisProperties) {
 
     companion object {
         val log: Logger = LoggerFactory.getLogger(JwtTokenAuthService::class.java)
+        val AUTHORITIES_FIELD = "authorities"
     }
 
-    fun parseToken(token: String?): UserDetails {
-        if (token != null) {
-            try {
-                val body: Claims = Jwts.parser()
-                    .setSigningKey(shardisProperties.security.jwtSecret)
-                    .parseClaimsJws(token)
-                    .body
+    fun createToken(authentication: Authentication, rememberMe: Boolean = false): String {
 
-                return ShardisUserDetails((body.get("userId") as Int).toLong(), body.subject, token, listOf(SimpleGrantedAuthority(body.get("role") as String)))
-            } catch (e: JwtException) {
-                log.error(e.message, e)
-            }
-        }
-        return ShardisUserDetails(-1, "ANONYMOUS", "ANONYMOUS", emptyList())
-    }
+        val authorities = authentication.authorities
+            .map({ authority -> authority.authority })
+            .joinToString(separator = ",")
 
-    fun generateToken(username: String): String {
-        val userDetails: UserDetails = shardisUserDetailsService.loadUserByUsername(username) ?: throw  UsernameNotFoundException("user $username not found")
-        if (userDetails is ShardisUserDetails) {
-            return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(LocalDateTime.now().toDate())
-                .setNotBefore(LocalDateTime.now().toDate())
-                .setExpiration(LocalDateTime.now().plusMinutes(30L).toDate())
-                .claim("userId", userDetails.id)
-                .claim("role", "ROLE_USER")
-                .signWith(SignatureAlgorithm.HS512, shardisProperties.security.jwtSecret)
-                .compact()
+        val now = LocalDateTime.now()
+        val validity: LocalDateTime
+        if (rememberMe) {
+            validity = now.plusSeconds(shardisProperties.security.tokenValidityInSecondsForRememberMe)
         } else {
-            throw InsufficientAuthenticationException("invalid user details")
+            validity = now.plusSeconds(shardisProperties.security.tokenValidityInSeconds)
         }
+
+        return Jwts.builder()
+            .setSubject(authentication.name)
+            .claim(AUTHORITIES_FIELD, authorities)
+            .signWith(SignatureAlgorithm.HS512, shardisProperties.security.jwtSecret)
+            .setExpiration(validity.toDate())
+            .compact()
+    }
+
+    fun getAuthentication(token: String): Authentication {
+        val claims = Jwts.parser()
+            .setSigningKey(shardisProperties.security.jwtSecret)
+            .parseClaimsJws(token)
+            .body
+
+        val authorities = claims.get(AUTHORITIES_FIELD).toString()
+            .split(",")
+            .map(::SimpleGrantedAuthority)
+
+        val principal = User(claims.getSubject(), "", authorities)
+
+        return UsernamePasswordAuthenticationToken(principal, "", authorities)
+    }
+
+    fun validateToken(authToken: String): Boolean {
+        try {
+            Jwts.parser().setSigningKey(shardisProperties.security.jwtSecret).parseClaimsJws(authToken)
+            return true
+        } catch (e: SignatureException) {
+            log.info("Invalid JWT signature: " + e.message)
+            return false
+        }
+
     }
 
 }
