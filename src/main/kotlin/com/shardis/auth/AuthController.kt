@@ -17,7 +17,7 @@ class AuthController(val jwtTokenAuthService: JwtTokenAuthService) {
 
     @RequestMapping(path = arrayOf("/token"), method = arrayOf(RequestMethod.GET))
     fun token(): String {
-        return jwtTokenAuthService.generateToken("test", 1)
+        return jwtTokenAuthService.generateToken("test")
     }
 
     @RequestMapping(path = arrayOf("/principal"), method = arrayOf(RequestMethod.GET))

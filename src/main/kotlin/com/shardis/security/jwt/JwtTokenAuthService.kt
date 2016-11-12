@@ -2,16 +2,15 @@ package com.shardis.security.jwt
 
 import com.shardis.ShardisProperties
 import com.shardis.extensions.toDate
+import com.shardis.security.ShardisUserDetailsService
 import com.shardis.security.support.ShardisUserDetails
-import com.shardis.user.UserRepository
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.security.authentication.BadCredentialsException
-import org.springframework.security.authentication.DisabledException
+import org.springframework.security.authentication.InsufficientAuthenticationException
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UsernameNotFoundException
@@ -23,7 +22,8 @@ import java.time.LocalDateTime
  */
 @Service
 open class JwtTokenAuthService(
-    private val shardisProperties: ShardisProperties
+    private val shardisProperties: ShardisProperties,
+    private val shardisUserDetailsService: ShardisUserDetailsService
 ) {
 
     companion object {
@@ -46,16 +46,21 @@ open class JwtTokenAuthService(
         return ShardisUserDetails(-1, "ANONYMOUS", "ANONYMOUS", emptyList())
     }
 
-    fun generateToken(username: String, userId: Long): String {
-        return Jwts.builder()
-            .setSubject(username)
-            .setIssuedAt(LocalDateTime.now().toDate())
-            .setNotBefore(LocalDateTime.now().toDate())
-            .setExpiration(LocalDateTime.now().plusMinutes(30L).toDate())
-            .claim("userId", userId)
-            .claim("role", "ROLE_USER")
-            .signWith(SignatureAlgorithm.HS512, shardisProperties.security.jwtSecret)
-            .compact()
+    fun generateToken(username: String): String {
+        val userDetails: UserDetails = shardisUserDetailsService.loadUserByUsername(username) ?: throw  UsernameNotFoundException("user $username not found")
+        if (userDetails is ShardisUserDetails) {
+            return Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(LocalDateTime.now().toDate())
+                .setNotBefore(LocalDateTime.now().toDate())
+                .setExpiration(LocalDateTime.now().plusMinutes(30L).toDate())
+                .claim("userId", userDetails.id)
+                .claim("role", "ROLE_USER")
+                .signWith(SignatureAlgorithm.HS512, shardisProperties.security.jwtSecret)
+                .compact()
+        } else {
+            throw InsufficientAuthenticationException("invalid user details")
+        }
     }
 
 }
