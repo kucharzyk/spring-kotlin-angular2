@@ -2,6 +2,8 @@ package com.shardis.security.jwt
 
 import com.shardis.ShardisProperties
 import com.shardis.extensions.toDate
+import com.shardis.security.support.ShardisUserDetails
+import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.SignatureException
@@ -23,6 +25,7 @@ open class JwtTokenAuthService(private val shardisProperties: ShardisProperties)
     companion object {
         val log: Logger = LoggerFactory.getLogger(JwtTokenAuthService::class.java)
         val AUTHORITIES_FIELD = "authorities"
+        val USER_ID_FIELD = "user_id"
     }
 
     fun createToken(authentication: Authentication, rememberMe: Boolean = false): String {
@@ -39,10 +42,14 @@ open class JwtTokenAuthService(private val shardisProperties: ShardisProperties)
             validity = now.plusSeconds(shardisProperties.security.tokenValidityInSeconds)
         }
 
+        val userDetails = authentication.details as ShardisUserDetails;
+
         return Jwts.builder()
             .setSubject(authentication.name)
+            .claim(USER_ID_FIELD,userDetails.userId)
             .claim(AUTHORITIES_FIELD, authorities)
             .signWith(SignatureAlgorithm.HS512, shardisProperties.security.jwtSecret)
+            .setNotBefore(now.toDate())
             .setExpiration(validity.toDate())
             .compact()
     }
@@ -57,7 +64,7 @@ open class JwtTokenAuthService(private val shardisProperties: ShardisProperties)
             .split(",")
             .map(::SimpleGrantedAuthority)
 
-        val principal = User(claims.getSubject(), "", authorities)
+        val principal = ShardisUserDetails(claims.get(USER_ID_FIELD).toString().toLong(),claims.subject, "", authorities)
 
         return UsernamePasswordAuthenticationToken(principal, "", authorities)
     }
