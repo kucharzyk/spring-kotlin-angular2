@@ -51,9 +51,11 @@ generateTypeScript {
   classPatterns = [
     "com.shardis.**.*Dto"
   ]
-  outputFile = "${project.buildDir}/../src/main/typescript/app/shared/kotlin.d.ts"
+  outputFile = "${project.buildDir}/../src/main/typescript/app/shared/kotlin.ts"
   outputKind = "global"
-  namespace = "Kotlin";
+  namespace = "Kotlin"
+  noFileComment = true
+  outputFileType = "implementationFile"
 }
 
 jar {
