@@ -23,5 +23,6 @@ Project is at early alpha stage - Don't use it now - It's a mess
 * Angular-Cli
 * SCSS
 * Undertow
+* Generating typescript interfaces from Kotlin classes
 
 ## Changelog

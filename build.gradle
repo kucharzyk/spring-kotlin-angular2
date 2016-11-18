@@ -6,6 +6,7 @@ buildscript {
     jjwtVersion = "0.7.0"
     gradleNodePluginVersion = "0.13"
     reflectionsVersion = "0.9.10"
+    typescriptGeneratorVersion = "1.12.236"
   }
 
   repositories {
@@ -19,6 +20,8 @@ buildscript {
     classpath group: "org.springframework.boot", name: "spring-boot-gradle-plugin", version: "${springBootVersion}"
     classpath group: "org.jetbrains.kotlin", name: "kotlin-gradle-plugin", version: "${kotlinVersion}"
     classpath group: "com.moowork.gradle", name: "gradle-node-plugin", version: "${gradleNodePluginVersion}"
+    classpath group: "cz.habarta.typescript-generator", name: "typescript-generator-gradle-plugin", version: "${typescriptGeneratorVersion}"
+
   }
 
 }
@@ -27,10 +30,13 @@ apply plugin: "java"
 apply plugin: "kotlin"
 apply plugin: "eclipse"
 apply plugin: "org.springframework.boot"
+apply plugin: "cz.habarta.typescript-generator"
 apply plugin: "com.moowork.node"
 apply plugin: "jacoco"
 
 project.version = "0.0.1-SNAPSHOT"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
 
 node {
   version = "6.9.1"
@@ -38,6 +44,16 @@ node {
   download = true
   workDir = file("${project.buildDir}/node")
   nodeModulesDir = file("${project.projectDir}")
+}
+
+generateTypeScript {
+  jsonLibrary = "jackson2"
+  classPatterns = [
+    "com.shardis.**.*Dto"
+  ]
+  outputFile = "${project.buildDir}/../src/main/typescript/app/shared/kotlin.d.ts"
+  outputKind = "global"
+  namespace = "Kotlin";
 }
 
 jar {
