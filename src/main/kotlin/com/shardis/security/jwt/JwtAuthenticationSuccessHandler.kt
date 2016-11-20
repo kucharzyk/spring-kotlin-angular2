@@ -17,7 +17,7 @@ open class JwtAuthenticationSuccessHandler() : AuthenticationSuccessHandler {
     private lateinit var jwtTokenAuthService: JwtTokenAuthService
 
     override fun onAuthenticationSuccess(request: HttpServletRequest, response: HttpServletResponse, authentication: Authentication) {
-        val testToken = jwtTokenAuthService.createToken(authentication)
+        val testToken = jwtTokenAuthService.createToken(authentication, request)
         response.writer.use {
             it.print(testToken)
             it.flush()

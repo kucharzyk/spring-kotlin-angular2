@@ -63,7 +63,6 @@
         invalidated boolean not null,
         invalidation_date timestamp,
         ip_adress varchar(39) not null,
-        token TEXT not null,
         user_id int8 not null,
         primary key (id)
     );

@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
+import javax.servlet.http.HttpServletRequest
 
 /**
  * Created by Tomasz Kucharzyk
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController(val jwtTokenAuthService: JwtTokenAuthService) {
 
     @RequestMapping(path = arrayOf("/token"), method = arrayOf(RequestMethod.GET))
-    fun token(): String {
-        return jwtTokenAuthService.createToken(UsernamePasswordAuthenticationToken("test", "", listOf(SimpleGrantedAuthority("ROLE_TEST"))))
+    fun token(request: HttpServletRequest): String {
+        return jwtTokenAuthService.createToken(UsernamePasswordAuthenticationToken("test", "", listOf(SimpleGrantedAuthority("ROLE_TEST"))), request)
     }
 
     @RequestMapping(path = arrayOf("/principal"), method = arrayOf(RequestMethod.GET))

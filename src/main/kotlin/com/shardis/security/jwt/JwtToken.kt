@@ -18,9 +18,6 @@ class JwtToken() : AuditedEntity() {
     @Column(nullable = false, length = 39)
     var ipAdress: String? = null
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    var token: String = ""
-
     @Column(nullable = false)
     var expirationDate: LocalDateTime = LocalDateTime.now()
 
@@ -34,6 +31,6 @@ class JwtToken() : AuditedEntity() {
     var invalidated = false
 
     @Column(nullable = true)
-    var invalidationDate: LocalDateTime = LocalDateTime.now()
+    var invalidationDate: LocalDateTime? = null
 
 }
