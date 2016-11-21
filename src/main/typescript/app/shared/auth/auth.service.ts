@@ -1,6 +1,7 @@
-import {Injectable} from "@angular/core";
-import {Http, Headers} from "@angular/http";
-import {AppMenuItem} from "../../app.menu";
+import {Injectable} from '@angular/core';
+import {Http, Headers} from '@angular/http';
+import {AppMenuItem} from '../../app.menu';
+
 
 @Injectable()
 export class AuthService {
