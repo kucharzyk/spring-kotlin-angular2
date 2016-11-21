@@ -2,7 +2,7 @@ package com.shardis.security.jwt
 
 import com.shardis.jpa.AuditedEntity
 import com.shardis.user.User
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.ManyToOne
@@ -19,7 +19,7 @@ class JwtToken() : AuditedEntity() {
     var ipAdress: String? = null
 
     @Column(nullable = false)
-    var expirationDate: LocalDateTime = LocalDateTime.now()
+    var expirationDate: ZonedDateTime = ZonedDateTime.now()
 
     @ManyToOne(optional = false)
     var user: User? = null
@@ -31,6 +31,6 @@ class JwtToken() : AuditedEntity() {
     var invalidated = false
 
     @Column(nullable = true)
-    var invalidationDate: LocalDateTime? = null
+    var invalidationDate: ZonedDateTime? = null
 
 }

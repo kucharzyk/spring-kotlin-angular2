@@ -9,7 +9,7 @@ import javax.transaction.Transactional
 
 @Transactional
 @Service
-open class UserService(val userRepository: UserRepository) {
+open class UserService(open val userRepository: UserRepository) {
 
     open fun updateUsers(): MutableIterable<User> {
         val users = userRepository.findAll()

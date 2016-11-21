@@ -5,7 +5,6 @@ import com.shardis.extensions.toDate
 import com.shardis.security.support.ShardisUserDetails
 import com.shardis.user.JwtTokenRepository
 import com.shardis.user.UserRepository
-import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.SignatureException
@@ -15,7 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Service
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import javax.servlet.http.HttpServletRequest
 
 /**
@@ -40,14 +39,14 @@ open class JwtTokenAuthService(
             .map({ authority -> authority.authority })
             .joinToString(separator = ",")
 
-        val now = LocalDateTime.now()
-        val validity: LocalDateTime = if (rememberMe) {
+        val now = ZonedDateTime.now()
+        val validity: ZonedDateTime = if (rememberMe) {
             now.plusSeconds(shardisProperties.security.tokenValidityInSecondsForRememberMe)
         } else {
             now.plusSeconds(shardisProperties.security.tokenValidityInSeconds)
         }
 
-        val userDetails = authentication.details as ShardisUserDetails
+        val userDetails = authentication.principal as ShardisUserDetails
         val loggedUser = userRepository.findOne(userDetails.userId)
 
         val jwtToken = JwtToken().apply {

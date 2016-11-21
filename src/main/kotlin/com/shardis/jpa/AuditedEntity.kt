@@ -7,7 +7,7 @@ import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedBy
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import javax.persistence.Column
 import javax.persistence.EntityListeners
 import javax.persistence.MappedSuperclass
@@ -24,7 +24,7 @@ open class AuditedEntity : BaseEntity() {
     @CreatedDate
     @Column(nullable = false, updatable = false)
     @JsonIgnore
-    private var createdDate: LocalDateTime? = null
+    private var createdDate: ZonedDateTime? = null
 
     @CreatedBy
     @Column(updatable = false)
@@ -33,7 +33,7 @@ open class AuditedEntity : BaseEntity() {
 
     @LastModifiedDate
     @JsonIgnore
-    var updatedDate: LocalDateTime? = null
+    var updatedDate: ZonedDateTime? = null
 
     @LastModifiedBy
     @JsonIgnore

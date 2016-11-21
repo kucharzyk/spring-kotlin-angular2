@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
-import {AppMenuItem} from '../../app.menu';
+import {Injectable} from "@angular/core";
+import {Http, Headers} from "@angular/http";
+import {AppMenuItem} from "../../app.menu";
 
 @Injectable()
 export class AuthService {
@@ -10,17 +10,17 @@ export class AuthService {
   private userData: any = null;
 
   // @LocalStorage()
-  private tokenData: Oauth2TokenData;
+  private jwtToken: string;
 
   public static decodeAccessToken(access_token: string) {
     return JSON.parse(window.atob(access_token.split('.')[1]));
   }
 
   constructor(public http: Http) {
-    this.tokenData = JSON.parse(localStorage.getItem('tokenData'));
-    if (this.tokenData && this.tokenData.access_token) {
+    this.jwtToken = localStorage.getItem('tokenData');
+    if (!!this.jwtToken) {
       this.authenticated = true;
-      this.userData = AuthService.decodeAccessToken(this.tokenData.access_token);
+      this.userData = AuthService.decodeAccessToken(this.jwtToken);
       this.tokenExpirationDate = new Date(this.userData.exp * 1000);
       if (this.authenticated && this.tokenExpirationDate < new Date()) {
         console.log('Session timeout');
@@ -56,12 +56,12 @@ export class AuthService {
         .post('/api/authentication', payload, {headers: headers})
         .subscribe(
           data => {
-            this.tokenData = data.json();
+            this.jwtToken = data.text();
             this.authenticated = true;
-            this.userData = AuthService.decodeAccessToken(this.tokenData.access_token);
+            this.userData = AuthService.decodeAccessToken(this.jwtToken);
             this.tokenExpirationDate = new Date(this.userData.exp * 1000);
             resolve('OK');
-            localStorage.setItem('tokenData', JSON.stringify(this.tokenData));
+            localStorage.setItem('tokenData', this.jwtToken);
           },
           err => {
             console.log(err);
@@ -74,34 +74,13 @@ export class AuthService {
 
   public refreshToken() {
     if (this.isAuthenticated()) {
-
-      let basicAuthHeader = btoa(`acme:acmesecret`);
-
-      let headers = new Headers();
-      headers.append('Authorization', `Basic  ${basicAuthHeader}`);
-      headers.append('Accept', `application/json`);
-      headers.append('Content-Type', `application/x-www-form-urlencoded`);
-
-      let data = 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(this.tokenData.refresh_token);
-
-      this.http
-        .post('/api/oauth/token', data, {headers: headers})
-        .subscribe(
-          data => {
-            this.tokenData = data.json();
-            this.authenticated = true;
-            this.userData = AuthService.decodeAccessToken(this.tokenData.access_token);
-            this.tokenExpirationDate = new Date(this.userData.exp * 1000);
-          },
-          err => {
-            console.log(err);
-          }
-        );
+      // refresh token here
     }
   }
 
   public logout(): any {
-    this.tokenData = new Oauth2TokenData();
+    this.jwtToken = null;
+    localStorage.removeItem('tokenData');
     this.userData = null;
     this.authenticated = false;
     this.tokenExpirationDate = null;
@@ -145,7 +124,7 @@ export class AuthService {
   public getAuthorizationHeaders(): Headers {
     let authorizationHeaders = new Headers();
     if (this.authenticated) {
-      authorizationHeaders.append('Authorization', `Bearer ${this.tokenData.access_token}`);
+      authorizationHeaders.append('Authorization', `Bearer ${this.jwtToken}`);
     }
     return authorizationHeaders;
   }
@@ -157,26 +136,4 @@ export class AuthService {
     }
   }
 
-  // private fetchUserData() {
-  //   this.http.get('/api/user/user', {headers: this.getAuthorizationHeaders()})
-  //       .subscribe(
-  //           data => {
-  //             this.userData = data.json();
-  //           },
-  //           err => this.authenticated = false
-  //       );
-  // }
-
-}
-
-class Oauth2TokenData {
-  access_token: string = null;
-  token_type: string = null;
-  expires_in: number = null;
-  scope: string = null;
-  jti: string = null;
-  refresh_token: string = null;
-
-  constructor() {
-  }
 }
