@@ -1,49 +1,118 @@
+<div class="main-container">
+  <div class="alert alert-app-level">
+    <div class="alert-item">
+                  <span class="alert-text">
+                      This alert is at the top of the page.
+                  </span>
+    </div>
+  </div>
+  <header class="header header-6">
+    <div class="branding">
+      <a href="javascript://" class="nav-link">
+        <clr-icon shape="vm-bug"></clr-icon>
+        <span class="title">Shardis</span>
+      </a>
+    </div>
+    <div class="header-nav">
+      <a href="javascript://" class="active nav-link" href="javascript://"><span class="nav-text">Dashboard</span></a>
+      <a href="javascript://" class="nav-link" href="javascript://"><span class="nav-text">Interactive Analytics</span></a>
+    </div>
+    <div class="header-actions">
+      <clr-dropdown class="dropdown bottom-right">
+        <button class="nav-icon" clrDropdownToggle>
+          <clr-icon shape="user"></clr-icon>
+          <clr-icon shape="caret" class="icon-orient-down"></clr-icon>
+        </button>
+        <div class="dropdown-menu">
+          <a href="javascript://" clrDropdownItem>About</a>
+          <a href="javascript://" clrDropdownItem>Preferences</a>
+          <a href="javascript://" clrDropdownItem>Log out</a>
+        </div>
+      </clr-dropdown>
+    </div>
+  </header>
+
+  <nav class="subnav">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Management</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Cloud</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Tenants</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+    <nav class="sidenav">
+      <section class="sidenav-content">
+        <a href="javascript://" class="nav-link active">
+          Nav Element 1
+        </a>
+        <a href="javascript://" class="nav-link">
+          Nav Element 2
+        </a>
+        <section class="nav-group collapsible">
+          <input id="tabexample1" type="checkbox">
+          <label for="tabexample1">Collapsible Nav Element</label>
+          <ul class="nav-list">
+            <li><a class="nav-link">Link 1</a></li>
+            <li><a class="nav-link">Link 2</a></li>
+          </ul>
+        </section>
+        <section class="nav-group">
+          <input id="tabexample2" type="checkbox">
+          <label for="tabexample2">Default Nav Element</label>
+          <ul class="nav-list">
+            <li><a class="nav-link">Link 1</a></li>
+            <li><a class="nav-link">Link 2</a></li>
+            <li><a class="nav-link active">Link 3</a></li>
+            <li><a class="nav-link">Link 4</a></li>
+            <li><a class="nav-link">Link 5</a></li>
+            <li><a class="nav-link">Link 6</a></li>
+          </ul>
+        </section>
+      </section>
+    </nav>
+  </div>
+  <footer>
+    <span>{{ name }}</span>
+    <span><a [href]="url">by Shardis</a></span>
+  </footer>
+</div>
+
+<hr>
+<hr>
+<hr>
+
+
+<div>
+  <div class="navigation">
+    <template ngFor let-view [ngForOf]="views">
+      <a routerLinkActive="active" [routerLink]="view.link"
+         [hidden]="!authService.canView(view)">
+        <div>{{view.icon}}</div>
+        <span> {{view.name}}</span>
+        <span> {{view.description}}</span>
+      </a>
+    </template>
+  </div>
+</div>
+
+
+<span class="user-info"
+      *ngIf="authService.isAuthenticated()">Current user: {{ authService.getUserData().user_name }}</span>
+<a routerLinkActive="active" [routerLink]="['login']" [hidden]="authService.isAuthenticated()">Login</a>
+<button (click)="logMeOut()" [hidden]="!authService.isAuthenticated()">Logout</button>
 <div class="sidenav-layout">
 
-  <div>
-    <div class="navigation">
-      <template ngFor let-view [ngForOf]="views">
-        <a routerLinkActive="active" [routerLink]="view.link"
-           [hidden]="!authService.canView(view)">
-          <div>{{view.icon}}</div>
-          <span> {{view.name}}</span>
-          <span> {{view.description}}</span>
-        </a>
-      </template>
-    </div>
-  </div>
-
-  <div class="main-content">
-    <div >
-      <button>
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
-        </svg>
-      </button>
-      <span>{{ name }}</span>
-      <span class="fill"></span>
-      <span class="user-info" *ngIf="authService.isAuthenticated()">Current user: {{ authService.getUserData().user_name }}</span>
-      <a  routerLinkActive="active" [routerLink]="['login']"
-         [hidden]="authService.isAuthenticated()">Login</a>
-      <button  (click)="logMeOut()" [hidden]="!authService.isAuthenticated()">Logout
-      </button>
-
-      <button  (click)="authService.refreshToken()" [hidden]="true">Refresh token
-      </button>
-
-    </div>
-
-    <router-outlet></router-outlet>
-
-  </div>
-
-  <div class="footer" >
-    <div>
-      <img src="/assets/img/angular-logo.png">
-      <div>{{ name }}</div>
-      <div><a [href]="url">by Shardis</a></div>
-    </div>
-  </div>
-
-</div>
 

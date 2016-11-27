@@ -79,8 +79,8 @@
     "prebuild:prod": "npm run clean:dist",
     "build:prod": "ng build -prod",
     "server": "npm run server:dev",
-    "server:dev": "ng serve --p 4200 -pc proxy.json -dev",
-    "server:prod": "ng serve --p 4200 -pc proxy.json -prod",
+    "server:dev": "ng serve --p 4200 -pc proxy.json --watcher=events -dev",
+    "server:prod": "ng serve --p 4200 -pc proxy.json --watcher=events -prod",
     "ncu": "ncu -a",
     "ng:upgrade": "ng init -n shardis -sd src/main/typescript --style scss --prefix shardis --routing",
     "start": "npm run server:dev"
