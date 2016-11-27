@@ -1,10 +1,10 @@
-<md-card>
-  <md-card-title-group>
-    <img md-card-sm-image [src]="angularLogo" alt="angular logo"/>
-    <md-card-title>Shardis</md-card-title>
-    <md-card-subtitle>Authenticated: {{authService.isAuthenticated()}}</md-card-subtitle>
-  </md-card-title-group>
-  <md-card-content>
+<div>
+  <div>
+    <img [src]="angularLogo" alt="angular logo"/>
+    <div>Shardis</div>
+    <div>Authenticated: {{authService.isAuthenticated()}}</div>
+  </div>
+  <div>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ex massa, efficitur eu sodales eget, malesuada sed
       mauris. Maecenas feugiat quam ac elit ultrices, ac interdum lacus vulputate. Maecenas porttitor tempus metus sit
       amet fermentum. Curabitur eleifend diam nulla, ac hendrerit turpis sagittis id. Nulla vulputate odio nec lorem
@@ -43,16 +43,16 @@
       convallis laoreet nibh accumsan porta. Vivamus ut laoreet lectus. Pellentesque sit amet elit ipsum. Fusce viverra,
       justo nec lobortis laoreet, urna eros pulvinar erat, eu fermentum mauris mauris id nibh. Duis sollicitudin eros id
       est sodales, eu accumsan orci pulvinar. Etiam mollis eget magna a rhoncus.</p>
-  </md-card-content>
-</md-card>
+  </div>
+</div>
 
-<md-card *ngIf="authService.isAuthenticated()">
-  <md-card-header>
-    <md-card-title><h1 style="text-align: center">Token will expire {{authService.getTokenExpirationDate() |
-      date:'MM/dd/yy HH:mm:ss'}}</h1></md-card-title>
-    <md-card-subtitle>Authenticated: {{authService.isAuthenticated()}}</md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
+<div *ngIf="authService.isAuthenticated()">
+  <div>
+    <div><h1 style="text-align: center">Token will expire {{authService.getTokenExpirationDate() |
+      date:'MM/dd/yy HH:mm:ss'}}</h1></div>
+    <div>Authenticated: {{authService.isAuthenticated()}}</div>
+  </div>
+  <div>
     <div style="width: 100%">
   <pre>
     {{ authService.getUserData() | json }}
@@ -61,12 +61,11 @@
       <span x-large>Content from server:</span>
 
       <div>
-        <md-input [style.width]="'100%'" [value]="data.value" (input)="data.value = $event.target.value"
-                  autofocus></md-input>
+        <input [style.width]="'100%'" [value]="data.value" (input)="data.value = $event.target.value"/>
       </div>
 
       <pre>this.data = {{ data | json }}</pre>
     </div>
-  </md-card-content>
-</md-card>
+  </div>
+</div>
 

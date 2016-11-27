@@ -44,7 +44,7 @@ describe('App: ShardisUi', () => {
     let fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('md-card.footer a').textContent).toContain('by Shardis');
+    expect(compiled.querySelector('div.footer a').textContent).toContain('by Shardis');
   });
 
   it('should properly log you out', () => {
