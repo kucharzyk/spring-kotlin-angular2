@@ -1,12 +1,17 @@
 /* tslint:disable:no-unused-variable */
 
-import {TestBed} from '@angular/core/testing';
+import {TestBed, ComponentFixture, async} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {AuthService} from './shared/auth/auth.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {COMMON_TESTING_MODULES, COMMON_TESING_PROVIDERS} from './testing/testing.modules';
 
 describe('App: ShardisUi', () => {
+
+  let fixture: ComponentFixture<AppComponent>;
+  let element: any;
+  let component: AppComponent;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -25,43 +30,42 @@ describe('App: ShardisUi', () => {
         AppComponent
       ],
     });
+
+    fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    element = fixture.debugElement.nativeElement;
+    component = fixture.componentInstance;
+  });
+
+  afterEach(() => {
+    fixture.destroy();
   });
 
   it('should create the app', () => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
 
   it(`should have as url ''https://github.com/shardis''`, () => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app.url).toEqual('https://github.com/shardis');
+    expect(component.url).toEqual('https://github.com/shardis');
   });
 
   it('should render github link', () => {
-    let fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('footer span a').textContent).toContain('by Shardis');
+    expect(element.querySelector('footer span a').textContent).toContain('by Shardis');
   });
 
-  it('should properly log you out', () => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-    expect(app.authService).toBeTruthy();
-    expect(app.authService).toBeTruthy();
+  it('should properly log you out', async(() => {
+    expect(component).toBeTruthy();
+    expect(component.authService).toBeTruthy();
 
-    spyOn(app.authService, 'logout');
-    expect(app.authService.logout).not.toHaveBeenCalled();
+    spyOn(component.authService, 'logout');
+    expect(component.authService.logout).not.toHaveBeenCalled();
 
-    app.logMeOut();
+    component.logMeOut();
 
-    expect(app.authService.logout).toHaveBeenCalled();
+    expect(component.authService.logout).toHaveBeenCalled();
 
-  });
+  }));
 
 
 });
