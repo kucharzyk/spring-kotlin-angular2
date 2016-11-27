@@ -30,11 +30,6 @@ export const routes: Routes = [
     canActivate: [AuthenticatedGuard, AdminGuard]
   },
   {
-    path: 'playground',
-    pathMatch: 'prefix',
-    loadChildren: 'app/playground/playground.module#PlaygroundModule'
-  },
-  {
     path: 'login',
     pathMatch: 'prefix',
     loadChildren: 'app/login/login.module#LoginModule',

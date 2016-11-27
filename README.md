@@ -20,6 +20,7 @@ Project is at early alpha stage - Don't use it now - It's a mess
 * Typescript
 * Angular 2
 * Angular-Cli
+* Clarity Design System
 * SCSS
 * Undertow
 * Generating typescript interfaces from Kotlin classes

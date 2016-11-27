@@ -7,12 +7,6 @@ export const APP_MENU: AppMenuItem[] = [
     link: ['']
   },
   {
-    name: 'Playground',
-    description: 'Playground page',
-    icon: 'casino',
-    link: ['playground']
-  },
-  {
     name: 'Crud',
     description: 'Simple crud',
     icon: 'edit',
