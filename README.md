@@ -19,7 +19,6 @@ Project is at early alpha stage - Don't use it now - It's a mess
 * JWT
 * Typescript
 * Angular 2
-* Angular Material
 * Angular-Cli
 * SCSS
 * Undertow
