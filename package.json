@@ -54,7 +54,8 @@
     "ts-node": "1.7.0",
     "tslint": "3.15.1",
     "typescript": "2.0.10",
-    "webdriver-manager": "10.2.8"
+    "webdriver-manager": "10.2.8",
+    "yarn": "0.17.9"
   },
   "scripts": {
     "clean": "yarn cache clean && rimraf coverage src/main/resources/static/*",
