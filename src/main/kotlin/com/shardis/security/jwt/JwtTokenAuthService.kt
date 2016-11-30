@@ -3,7 +3,6 @@ package com.shardis.security.jwt
 import com.shardis.ShardisProperties
 import com.shardis.extensions.toDate
 import com.shardis.security.support.ShardisUserDetails
-import com.shardis.user.JwtTokenRepository
 import com.shardis.user.UserRepository
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
@@ -79,11 +78,11 @@ open class JwtTokenAuthService(
             .parseClaimsJws(token)
             .body
 
-        val authorities = claims.get(AUTHORITIES_FIELD).toString()
+        val authorities = claims[AUTHORITIES_FIELD].toString()
             .split(",")
             .map(::SimpleGrantedAuthority)
 
-        val principal = ShardisUserDetails(claims.get(USER_ID_FIELD).toString().toLong(), claims.subject, "", authorities)
+        val principal = ShardisUserDetails(claims[USER_ID_FIELD].toString().toLong(), claims.subject, "", authorities)
 
         return UsernamePasswordAuthenticationToken(principal, "", authorities)
     }

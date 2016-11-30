@@ -1,6 +1,5 @@
-package com.shardis.user
+package com.shardis.role
 
-import com.shardis.role.Role
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 

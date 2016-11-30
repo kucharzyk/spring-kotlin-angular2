@@ -1,7 +1,7 @@
 package com.shardis.init
 
 import com.shardis.role.Role
-import com.shardis.user.RoleRepository
+import com.shardis.role.RoleRepository
 import com.shardis.user.User
 import com.shardis.user.UserRepository
 import org.slf4j.Logger
@@ -12,8 +12,9 @@ import javax.annotation.PostConstruct
 import javax.transaction.Transactional
 
 /**
- * Created by tomasz on 07.11.16.
+ * Created by tomasz
  */
+
 @Transactional
 @Service
 open class DbInitializer(
@@ -30,11 +31,11 @@ open class DbInitializer(
         if (roleRepository.findAll().none()) {
 
             log.info("Creating role user")
-            var roleUser = Role("ROLE_USER")
+            val roleUser = Role("ROLE_USER")
             roleRepository.save(roleUser)
 
             log.info("Creating role admin")
-            var roleAdmin = Role("ROLE_ADMIN")
+            val roleAdmin = Role("ROLE_ADMIN")
             roleRepository.save(roleAdmin)
 
         }
@@ -42,10 +43,10 @@ open class DbInitializer(
         if (userRepository.findAll().none()) {
 
             log.info("Crating user admin:xxxxxx")
-            var roleUser = roleRepository.findOneByName("ROLE_USER")
-            var roleAdmin = roleRepository.findOneByName("ROLE_ADMIN")
+            val roleUser = roleRepository.findOneByName("ROLE_USER")
+            val roleAdmin = roleRepository.findOneByName("ROLE_ADMIN")
 
-            var user: User = User("admin")
+            val user: User = User("admin")
             user.firstName = "Admin"
             user.lastName = "Admin"
             user.email = "admin@admin.pl"

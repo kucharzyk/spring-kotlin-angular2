@@ -13,6 +13,6 @@ import javax.servlet.http.HttpServletResponse
 @Component
 open class JwtAuthenticationLogoutHandler() : AbstractAuthenticationTargetUrlRequestHandler(), LogoutSuccessHandler {
     override fun onLogoutSuccess(request: HttpServletRequest, response: HttpServletResponse, authentication: Authentication?) {
-        response.status = HttpServletResponse.SC_OK;
+        response.status = HttpServletResponse.SC_OK
     }
 }
