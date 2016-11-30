@@ -10,10 +10,12 @@ before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
-  bundler: true
+  yarn: true
   directories:
   - node_modules
-  - build/node
+  - build/nodejs
+  - build/npm
+  - build/yarn
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 addons:
@@ -24,6 +26,6 @@ addons:
     - g++-4.8
 script:
   - ./gradlew check
-  - ./gradlew jacocoTestReport    
+  - ./gradlew jacocoTestReport
 after_success:
   - bash <(curl -s https://codecov.io/bash)

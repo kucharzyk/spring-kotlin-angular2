@@ -17,6 +17,7 @@ Project is at early alpha stage - Don't use it now - It's a mess
 * Spring Boot
 * Spring Security
 * JWT
+* Yarn
 * Typescript
 * Angular 2
 * Angular-Cli
