@@ -7,6 +7,8 @@ jdk:
 env:
   - CXX=g++-4.8
 before_cache:
+  - rm -f  .gradle/caches/modules-2/modules-2.lock
+  - rm -fr .gradle/caches/*/plugin-resolution/
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
@@ -16,6 +18,8 @@ cache:
   - build/nodejs
   - build/npm
   - build/yarn
+  - .gradle/caches/
+  - .gradle/wrapper/
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 addons:
