@@ -139,11 +139,11 @@ dependencies {
   testCompile group: "org.reflections", name: "reflections", version: "${reflectionsVersion}"
 }
 
-task nodeBuild(type: YarnTask) {
+task ngBuild(type: YarnTask) {
   args = ["run", "build:prod"]
 }
 
-task nodeTest(type: YarnTask) {
+task ngTest(type: YarnTask) {
   args = ["run", "test:phantom"]
 }
 
@@ -153,12 +153,12 @@ task nodeServer(type: YarnTask) {
 
 yarn_install.dependsOn yarnSetup
 
-nodeBuild.dependsOn yarn_install
-nodeTest.dependsOn yarn_install
+ngBuild.dependsOn yarn_install
+ngTest.dependsOn yarn_install
 
-processResources.dependsOn nodeBuild
+processResources.dependsOn ngBuild
 
-test.dependsOn nodeTest
+test.dependsOn ngTest
 
 clean.delete << file("node_modules")
 
