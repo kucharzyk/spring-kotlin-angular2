@@ -55,7 +55,7 @@
     "tslint": "3.15.1",
     "typescript": "2.0.10",
     "webdriver-manager": "10.2.8",
-    "yarn": "0.17.10"
+    "yarn": "0.18.0"
   },
   "scripts": {
     "clean": "yarn cache clean && rimraf coverage src/main/resources/static/*",
@@ -87,6 +87,6 @@
   "engines": {
     "node": ">= 6.9.0",
     "npm": ">= 3.0.0",
-    "yarn": ">= 0.17.0"
+    "yarn": ">= 0.18.0"
   }
 }

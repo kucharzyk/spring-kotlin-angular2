@@ -41,7 +41,7 @@ targetCompatibility = "1.8"
 node {
   version = "6.9.1"
   npmVersion = "3.10.8"
-  yarnVersion = "0.17.10"
+  yarnVersion = "0.18.0"
   download = true
   workDir = file("${project.buildDir}/nodejs")
   npmWorkDir = file("${project.buildDir}/npm")
