@@ -15,6 +15,7 @@
 *.html          text
 *.java          text
 *.kt            text
+*.kts           text
 *.js            text
 *.json          text
 *.jsp           text
