@@ -38,17 +38,6 @@ spring:
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-management:
-  shell:
-    auth:
-      simple:
-        user:
-          name: admin
-          password: xxxxxx
-      type: simple
-    ssh:
-      enabled: true
-      port: 2000
 logging.level:
   org.springframework.security: DEBUG
 
