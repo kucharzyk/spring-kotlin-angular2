@@ -4,7 +4,7 @@ buildscript {
     kotlinVersion = "1.0.5"
     springBootVersion = "1.4.2.RELEASE"
     jjwtVersion = "0.7.0"
-    gradleNodePluginVersion = "0.14"
+    gradleNodePluginVersion = "1.0.1"
     reflectionsVersion = "0.9.10"
     typescriptGeneratorVersion = "1.12.236"
   }
