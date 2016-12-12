@@ -154,6 +154,10 @@ task ngDocs(type: YarnTask) {
   args = ["run", "docs"]
 }
 
+task changelog(type: YarnTask) {
+  args = ["run", "changelog"]
+}
+
 yarn_install.dependsOn yarnSetup
 
 ngBuild.dependsOn yarn_install
