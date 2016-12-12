@@ -18,6 +18,7 @@ Project is at early alpha stage - Don't use it now - It's a mess
 * Spring Security
 * JWT
 * Yarn
+* Compodoc
 * Typescript
 * Angular 2
 * Angular-Cli

@@ -31,5 +31,9 @@ npm-debug.log*
 
 ### coverage
 coverage/
+
 ### dist
-/src/main/resources/static/
+src/main/resources/static/
+
+### docs
+documentation/
