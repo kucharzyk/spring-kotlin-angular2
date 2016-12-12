@@ -49,7 +49,7 @@ export const routes: Routes = [
     path: '**',
     pathMatch: 'prefix',
     redirectTo: '404'
-  },
+  }
 ];
 
 @NgModule({
