@@ -8,9 +8,9 @@ env:
   - CXX=g++-4.8
 before_cache:
   - rm -f  .gradle/caches/modules-2/modules-2.lock
-  - rm -fr .gradle/caches/*/plugin-resolution/
+  - rm -rf .gradle/caches/*/plugin-resolution/
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+  - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   yarn: true
   directories:
