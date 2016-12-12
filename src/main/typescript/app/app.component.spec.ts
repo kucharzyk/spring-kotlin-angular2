@@ -24,11 +24,11 @@ describe('App: ShardisUi', () => {
           path: '',
           pathMatch: 'prefix',
           component: AppComponent
-        }]),
+        }])
       ],
       declarations: [
         AppComponent
-      ],
+      ]
     });
 
     fixture = TestBed.createComponent(AppComponent);

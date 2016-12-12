@@ -25,7 +25,7 @@ describe('AdminGuard', () => {
         AdminGuard
       ],
       imports: [
-        RouterTestingModule.withRoutes([]),
+        RouterTestingModule.withRoutes([])
       ]
     });
   });

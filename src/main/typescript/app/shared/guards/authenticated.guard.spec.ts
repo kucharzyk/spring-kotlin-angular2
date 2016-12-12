@@ -25,7 +25,7 @@ describe('AuthenticatedGuard', () => {
         AuthenticatedGuard
       ],
       imports: [
-        RouterTestingModule.withRoutes([]),
+        RouterTestingModule.withRoutes([])
       ]
     });
   });

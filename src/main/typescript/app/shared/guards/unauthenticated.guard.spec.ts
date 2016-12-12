@@ -25,7 +25,7 @@ describe('UnauthenticatedGuard', () => {
         UnauthenticatedGuard
       ],
       imports: [
-        RouterTestingModule.withRoutes([]),
+        RouterTestingModule.withRoutes([])
       ]
     });
   });

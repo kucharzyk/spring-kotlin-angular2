@@ -20,5 +20,5 @@ export const COMMON_TESING_PROVIDERS = [
       return new Http(backend, defaultOptions);
     },
     deps: [MockBackend, BaseRequestOptions]
-  },
+  }
 ];

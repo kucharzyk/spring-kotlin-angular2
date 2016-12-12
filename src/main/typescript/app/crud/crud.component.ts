@@ -40,7 +40,7 @@ export class CrudComponent implements OnInit {
       updatedDate: null,
       version: null,
       createdBy: null,
-      updatedBy: null,
+      updatedBy: null
     };
   }
 

@@ -21,11 +21,11 @@ describe('Component: Login', () => {
           path: '',
           pathMatch: 'prefix',
           component: LoginComponent
-        }]),
+        }])
       ],
       declarations: [
         LoginComponent
-      ],
+      ]
     });
   });
 

@@ -14,7 +14,7 @@ describe('Service: Title', () => {
         AuthService
       ],
       imports: [
-        ...COMMON_TESTING_MODULES,
+        ...COMMON_TESTING_MODULES
       ]
     });
   });

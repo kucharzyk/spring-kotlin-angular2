@@ -20,11 +20,11 @@ describe('Component: Crud', () => {
           path: '',
           pathMatch: 'prefix',
           component: CrudComponent
-        }]),
+        }])
       ],
       declarations: [
         CrudComponent
-      ],
+      ]
     });
   });
 

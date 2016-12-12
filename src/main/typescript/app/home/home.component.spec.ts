@@ -22,11 +22,11 @@ describe('Component: Home', () => {
           path: '',
           pathMatch: 'prefix',
           component: HomeComponent
-        }]),
+        }])
       ],
       declarations: [
         HomeComponent
-      ],
+      ]
     });
   });
 
