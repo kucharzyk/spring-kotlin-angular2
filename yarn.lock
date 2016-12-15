@@ -985,17 +985,17 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-clarity-angular@0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/clarity-angular/-/clarity-angular-0.7.3.tgz#7f1403ea1cfdbe450938a8825930ad3b5785bff1"
+clarity-angular@0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/clarity-angular/-/clarity-angular-0.7.4.tgz#47dca4be1f4effc26990729d3e97df11731f16ee"
 
-clarity-icons@0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/clarity-icons/-/clarity-icons-0.7.3.tgz#95e7046917ba1978a438db400310dcdcc318d7fe"
+clarity-icons@0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/clarity-icons/-/clarity-icons-0.7.4.tgz#2e872dbfca296f09afb0703f11be743a4aa18d8e"
 
-clarity-ui@0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/clarity-ui/-/clarity-ui-0.7.3.tgz#30ded5b3252e70023f52b79382c74ae74528b390"
+clarity-ui@0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/clarity-ui/-/clarity-ui-0.7.4.tgz#ccdc6359a31777d76d429742840291be656adbbb"
 
 clean-css-promise@^0.1.0:
   version "0.1.1"
@@ -1327,7 +1327,7 @@ conventional-changelog-atom@^0.1.0:
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-cli@^1.2.0:
+conventional-changelog-cli@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/conventional-changelog-cli/-/conventional-changelog-cli-1.2.0.tgz#c4929dcdb5d5ba9aa1840418e6b4674691193f5d"
   dependencies:
