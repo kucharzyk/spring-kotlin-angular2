@@ -6,46 +6,47 @@
                   </span>
     </div>
   </div>
-  <clr-header>
+  <clr-header class="header-6">
     <div class="branding">
       <a href="javascript://" class="nav-link">
-        <clr-icon shape="vm-bug"></clr-icon>
+        <span class="fa fa-cubes fw fa-2x" aria-hidden="true"></span>
         <span class="title">Shardis</span>
       </a>
     </div>
-    <div class="header-nav">
-      <a href="javascript://" class="active nav-link" href="javascript://"><span class="nav-text">Dashboard</span></a>
-      <a href="javascript://" class="nav-link" href="javascript://"><span class="nav-text">Interactive Analytics</span></a>
+    <div class="header-nav" [clr-nav-level]="1">
+      <a href="javascript://" class="active nav-link"><span class="nav-text">Home</span></a>
+      <a href="javascript://" class="nav-link"><span class="nav-text">Module 1</span></a>
+      <a href="javascript://" class="nav-link"><span class="nav-text">Module 2</span></a>
+      <a href="javascript://" class="nav-link"><span class="nav-text">Module 3</span></a>
+      <a href="javascript://" class="nav-link"><span class="nav-text"><clr-icon shape="cog"></clr-icon></span></a>
+      <a href="javascript://" class="nav-link"><span class="nav-text"><clr-icon shape="share"></clr-icon></span></a>
     </div>
     <div class="header-actions">
-      <a href="javascript://" class="nav-text nav-link" *ngIf="authService.isAuthenticated()">Current user: {{ authService.getUserData().sub }}</a>
-      <a href="javascript://" routerLinkActive="active" [routerLink]="['login']" [hidden]="authService.isAuthenticated()"
-         class="nav-link nav-text">Login</a>
-      <a (click)="logMeOut()" [hidden]="!authService.isAuthenticated()" class="nav-link nav-text">Logout</a>
-      <clr-dropdown class="dropdown bottom-right">
-        <button class="nav-icon" clrDropdownToggle>
-          <clr-icon shape="user"></clr-icon>
-          <clr-icon shape="caret" class="icon-orient-down"></clr-icon>
+      <a class="nav-text nav-link" routerLinkActive="active" [routerLink]="['login']"
+         [hidden]="authService.isAuthenticated()">
+        <span>Log in</span>
+      </a>
+      <clr-dropdown [clrMenuPosition]="'bottom-right'" *ngIf="authService.isAuthenticated()">
+        <button class="nav-text" clrDropdownToggle>
+          <span>{{ authService.getUserData().sub }}</span>
+          <clr-icon shape="caret down"></clr-icon>
         </button>
         <div class="dropdown-menu">
-          <a href="javascript://" clrDropdownItem>About</a>
           <a href="javascript://" clrDropdownItem>Preferences</a>
-          <a href="javascript://" clrDropdownItem>Log out</a>
+          <a (click)="logMeOut()" [hidden]="!authService.isAuthenticated()" class="nav-text" clrDropdownItem>Log out</a>
         </div>
       </clr-dropdown>
     </div>
   </clr-header>
-  <nav class="sub-nav" [clr-nav-level]="1">
+  <nav class="subnav" [clr-nav-level]="2">
     <ul class="nav">
-      <template ngFor let-view [ngForOf]="views">
-        <li class="nav-item">
-          <a class="nav-link" href="#"
-             routerLinkActive="active" [routerLink]="view.link"
-             [hidden]="!authService.canView(view)">
-            {{view.name}}
-          </a>
-        </li>
-      </template>
+      <li class="nav-item" *ngFor="let view of views">
+        <a class="nav-link" href="javascript://"
+           routerLinkActive="active" [routerLink]="view.link"
+           [hidden]="!authService.canView(view)">
+          {{view.name}}
+        </a>
+      </li>
     </ul>
   </nav>
   <div class="content-container">
