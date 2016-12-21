@@ -1,15 +1,15 @@
 {
-  "name": "shardis",
+  "name": "shardis-kotlin-angular2",
   "version": "0.0.1",
-  "description": "shardis",
+  "description": "shardis-kotlin-angular2",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shardis/shardis.git"
+    "url": "git+https://github.com/shardis/shardis-kotlin-angular2.git"
   },
   "author": "Shardis",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shardis/shardis/issues"
+    "url": "https://github.com/shardis/shardis-kotlin-angular2/issues"
   },
   "private": true,
   "dependencies": {

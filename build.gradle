@@ -62,7 +62,7 @@ generateTypeScript {
 }
 
 jar {
-  baseName = "shardis"
+  baseName = "shardis-kotlin-angular2"
   version = project.version
 }
 
